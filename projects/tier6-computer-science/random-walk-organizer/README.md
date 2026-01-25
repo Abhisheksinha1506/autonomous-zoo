@@ -1,4 +1,13 @@
-# Random Walk Organizer
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Random Walk Organizer — The Wandering Archivist
+
+
+
+## 📖 The Analogy
+
+> An archivist who moves files based on wherever they happen to wander that day. Eventually, the most important files end up at the 'hubs' where the archivist walks most often.
 
 > **Reorganizes repo structure based on random walks and centrality**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [error-correcting-repo](../error-correcting-repo/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier6 | **Autonomy**: ⭐⭐⭐

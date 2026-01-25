@@ -1,4 +1,13 @@
-# Gravitational Orbits
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Gravitational Orbits — The Dance of the Planets
+
+
+
+## 📖 The Analogy
+
+> The files in this project act like tiny planets orbiting each other. They pull and tug on one another with invisible gravity, creating a chaotic dance that changes slightly every time you look.
 
 > **Files orbit each other; 3-body chaotic orbits emerge**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [fluid-dynamics-flow](../fluid-dynamics-flow/README.md)
+ | ➡️ **Next**: [neural-net-propagation](../neural-net-propagation/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier5 | **Autonomy**: ⭐⭐⭐

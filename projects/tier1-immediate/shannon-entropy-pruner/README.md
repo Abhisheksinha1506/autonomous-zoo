@@ -1,4 +1,13 @@
-# Shannon Entropy Pruner
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Shannon Entropy Pruner — The Selective Librarian
+
+
+
+## 📖 The Analogy
+
+> Think of this repo as a library that only keeps books with the most unique stories. If a book is just repeating what others say, the librarian 'recycles' it to make room for fresher, more interesting information.
 
 > **Self-cleaning repository that maximizes information density by deleting repetitive files**
 
@@ -63,6 +72,20 @@ Medium Entropy       ██████░░░░ 6.0 bits/char
 Low Entropy (Pruned) ███░░░░░░░ 3.0 bits/char
 ```
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [reaction-diffusion-spots](../reaction-diffusion-spots/README.md)
+ | ➡️ **Next**: [strange-attractor-drifter](../strange-attractor-drifter/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Autonomous | **Tier**: 1 | **Autonomy**: ⭐⭐⭐⭐⭐

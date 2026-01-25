@@ -1,4 +1,13 @@
-# Collatz Conjecture Explorer
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Collatz Conjecture Explorer — The Never-Ending Mountain Path
+
+
+
+## 📖 The Analogy
+
+> Imagine walking a trail where you must climb every hill (odd numbers) and slide down every slope (even numbers). No matter where it starts, this project is searching for the one valley that all paths eventually lead to.
 
 > **Walks the chaotic 3n+1 trajectories; picks new seeds when reaching 1**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+ | ➡️ **Next**: [godel-number-encoder](../godel-number-encoder/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier2 | **Autonomy**: ⭐⭐⭐

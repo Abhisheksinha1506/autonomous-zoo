@@ -1,4 +1,13 @@
-# Reaction-Diffusion Spots
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Reaction-Diffusion Spots — The Chemical Zebra
+
+
+
+## 📖 The Analogy
+
+> Like chemicals mixing in a laboratory or the patterns on a zebra's skin, this project creates beautiful ripples and spots by letting two 'inks' react and spread across the repository.
 
 > **Generates leopard-spot or zebra-stripe file distributions autonomously**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [kolmogorov-compressor](../kolmogorov-compressor/README.md)
+ | ➡️ **Next**: [shannon-entropy-pruner](../shannon-entropy-pruner/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier1 | **Autonomy**: ⭐⭐⭐

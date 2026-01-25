@@ -1,4 +1,13 @@
-# Kolmogorov Compressor
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Kolmogorov Compressor — The Master Squeezer
+
+
+
+## 📖 The Analogy
+
+> This project is like a traveler trying to pack a massive suitcase into a tiny backpack without losing anything. It keeps trying different ways to fold its own code until it finds the smallest possible way to stay exactly the same.
 
 > **Aggressively searches for the shortest possible description of its own code**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+ | ➡️ **Next**: [reaction-diffusion-spots](../reaction-diffusion-spots/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier1 | **Autonomy**: ⭐⭐⭐

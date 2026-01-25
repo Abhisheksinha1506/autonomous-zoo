@@ -1,4 +1,13 @@
-# Buddhabrot Renderer
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Buddhabrot Renderer — The Ghost in the Machine
+
+
+
+## 📖 The Analogy
+
+> By tracking thousands of random digital particles that 'escape' from chaos, this project slowly reveals a ghostly, beautiful shape hidden deep inside the math, which only appears after long periods of meditation.
 
 > **Renders the Buddha shape by plotting Mandelbrot orbit densities**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+ | ➡️ **Next**: [fractal-music-box](../fractal-music-box/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier4 | **Autonomy**: ⭐⭐⭐

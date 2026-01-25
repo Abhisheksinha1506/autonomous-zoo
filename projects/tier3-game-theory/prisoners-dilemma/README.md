@@ -1,4 +1,13 @@
-# Prisoner's Dilemma
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Prisoner's Dilemma — The Social Conflict Simulator
+
+
+
+## 📖 The Analogy
+
+> The files in this repo are like neighbors who have to decide whether to help each other or look out for themselves. They learn from each other, eventually forming groups that either trust or betray one another.
 
 > **Files cooperate or defect based on neighbors; evolves Nash equilibriums**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [immune-system-sentinel](../immune-system-sentinel/README.md)
+ | ➡️ **Next**: [resource-auction](../resource-auction/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier3 | **Autonomy**: ⭐⭐⭐

@@ -1,4 +1,13 @@
-# Metric Geometry
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Metric Geometry — The Space Travelers' Map
+
+
+
+## 📖 The Analogy
+
+> If you lived in a city made of blocks, you'd measure distance differently than if you could fly. This project compares these two types of travel to see how 'far' its files really are from each other.
 
 > **Explores non-Euclidean distance metrics in file organization**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [galois-field-builder](../galois-field-builder/README.md)
+ | ➡️ **Next**: [partition-function-counter](../partition-function-counter/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier7 | **Autonomy**: ⭐⭐⭐

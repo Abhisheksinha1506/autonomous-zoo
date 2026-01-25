@@ -1,4 +1,13 @@
-# Small-World Networker
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Small-World Networker — The Six Degrees of Connection
+
+
+
+## 📖 The Analogy
+
+> This project acts like a socialite at a party, building shortcuts between distant files. It proves that no matter how big the repository gets, everything is only a few handshakes away.
 
 > **Self-organizes files into a network where any node is reachable in few hops**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [resource-auction](../resource-auction/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier3 | **Autonomy**: ⭐⭐⭐

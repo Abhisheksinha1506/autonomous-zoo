@@ -1,4 +1,13 @@
-# Penrose Tiling
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Penrose Tiling — The Infinite Floor Designer
+
+
+
+## 📖 The Analogy
+
+> This project is laying tiles on an infinite floor. The catch? The pattern never repeats itself, even if you walk forever, creating a beautiful mosaic that is always unique.
 
 > **Builds a non-repeating, perfectly structured infinite floor**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [p-adic-number-line](../p-adic-number-line/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier2 | **Autonomy**: ⭐⭐⭐

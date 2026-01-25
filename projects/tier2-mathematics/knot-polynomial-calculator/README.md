@@ -1,4 +1,13 @@
-# Knot Polynomial Calculator
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Knot Polynomial Calculator — The Tangle Weaver
+
+
+
+## 📖 The Analogy
+
+> Like a sailor working with infinite rope, this project ties and unties mathematical knots. It calculates a special 'signature' for every tangle to prove that today's knot is fundamentally different from yesterday's.
 
 > **Creates file structures representing quantum invariants of mathematical knots**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [godel-number-encoder](../godel-number-encoder/README.md)
+ | ➡️ **Next**: [p-adic-number-line](../p-adic-number-line/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier2 | **Autonomy**: ⭐⭐⭐

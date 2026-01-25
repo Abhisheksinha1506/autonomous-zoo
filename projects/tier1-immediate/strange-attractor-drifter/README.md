@@ -1,4 +1,13 @@
-# Strange Attractor Drifter
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Strange Attractor Drifter — The Digital Butterfly
+
+
+
+## 📖 The Analogy
+
+> Imagine a butterfly flapping its wings in a digital forest. This project follows a chaotic trail that never crosses itself, ensuring it is always exploring a new corner of its imaginary world.
 
 > **Files drift along butterfly-wing paths; sensitive to initial conditions**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [shannon-entropy-pruner](../shannon-entropy-pruner/README.md)
+ | ➡️ **Next**: [thermodynamic-phase-changes](../thermodynamic-phase-changes/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier1 | **Autonomy**: ⭐⭐⭐

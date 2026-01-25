@@ -1,4 +1,13 @@
-# Fluid Dynamics Flow
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Fluid Dynamics Flow — The Digital River
+
+
+
+## 📖 The Analogy
+
+> Think of this repo as a stream of water. It simulates how ripples spread and how tiny whirlpools form, moving digital weight across the folders as if they were floating on a river.
 
 > **Simulates laminar/turbulent flow as file creation/deletion waves**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+ | ➡️ **Next**: [gravitational-orbits](../gravitational-orbits/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier5 | **Autonomy**: ⭐⭐⭐

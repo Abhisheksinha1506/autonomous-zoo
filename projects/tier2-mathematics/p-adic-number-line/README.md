@@ -1,4 +1,13 @@
-# P-adic Number Line
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# P-adic Number Line — The Branching Tree of Numbers
+
+
+
+## 📖 The Analogy
+
+> Instead of a straight line, this project sees numbers as a vast, branching tree. It organizes its files by following these branches, where the further you go out, the 'smaller' the distance back to the center becomes.
 
 > **Organizes files into an ultrametric tree where triangles are always isosceles**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [knot-polynomial-calculator](../knot-polynomial-calculator/README.md)
+ | ➡️ **Next**: [penrose-tiling](../penrose-tiling/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier2 | **Autonomy**: ⭐⭐⭐

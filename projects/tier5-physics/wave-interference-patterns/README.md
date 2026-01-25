@@ -1,4 +1,13 @@
-# Wave Interference Patterns
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Wave Interference Patterns — The Ripples in a Pond
+
+
+
+## 📖 The Analogy
+
+> Imagine dropping two pebbles into a digital lake. This project watches how the ripples meet, sometimes building each other up into waves and sometimes canceling each other out into stillness.
 
 > **Creates standing wave patterns via constructive/destructive file interference**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [thermodynamic-equilibrium](../thermodynamic-equilibrium/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier5 | **Autonomy**: ⭐⭐⭐

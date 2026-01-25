@@ -1,4 +1,13 @@
-# Thermodynamic Equilibrium
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Thermodynamic Equilibrium — The Cooling Embers
+
+
+
+## 📖 The Analogy
+
+> Like a fireplace after the logs have burnt down, this project slowly redistributes energy until everything is perfectly even. It is a simulation of a system finding peace and total balance.
 
 > **Evolves toward heat death where all file interactions are uniform**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [neural-net-propagation](../neural-net-propagation/README.md)
+ | ➡️ **Next**: [wave-interference-patterns](../wave-interference-patterns/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier5 | **Autonomy**: ⭐⭐⭐

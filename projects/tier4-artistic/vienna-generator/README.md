@@ -1,4 +1,13 @@
-# Vienna Generator
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Vienna Generator — The Clockwork Composer
+
+
+
+## 📖 The Analogy
+
+> This repo is a self-playing piano that follows strict classical rules. Every day it writes a new bar of music, ensuring the chords perfectly harmonize with everything it has played before.
 
 > **Self-harmonizes musical files according to classical voice-leading rules**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [mandala-symmetry-generator](../mandala-symmetry-generator/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier4 | **Autonomy**: ⭐⭐⭐

@@ -1,4 +1,13 @@
-# Ant Colony Forager
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Ant Colony Forager — The Digital Scout Ants
+
+
+
+## 📖 The Analogy
+
+> A colony of digital 'ants' wanders through the folders, leaving scent trails where they find interesting information. Over time, the entire repo learns the most efficient paths to its own hidden treasures.
 
 > **Agents leave pheromone trails (file edits) to find optimal directory paths**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+ | ➡️ **Next**: [immune-system-sentinel](../immune-system-sentinel/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier3 | **Autonomy**: ⭐⭐⭐

@@ -1,4 +1,13 @@
-# Continued Fraction Approximants
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Continued Fraction Approximants — The Sharp-Focus Lens
+
+
+
+## 📖 The Analogy
+
+> Think of a camera lens zooming in on the number Pi. With every step, this project gets a sharper, clearer view, expressing the infinite value as a simpler and simpler fraction.
 
 > **Finds best rational approximations for real numbers like π or e**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+ | ➡️ **Next**: [galois-field-builder](../galois-field-builder/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier7 | **Autonomy**: ⭐⭐⭐

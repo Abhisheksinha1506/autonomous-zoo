@@ -1,4 +1,13 @@
-# Galois Field Builder
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Galois Field Builder — The Closed Circle of Math
+
+
+
+## 📖 The Analogy
+
+> Imagine a number system that works like a clock. If you keep adding, you just come back around. This project builds a perfectly self-contained world where the math always stays inside a single circle.
 
 > **Constructs algebraic closure analogs; file groups interact under modular arithmetic**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [continued-fraction-approximants](../continued-fraction-approximants/README.md)
+ | ➡️ **Next**: [metric-geometry](../metric-geometry/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier7 | **Autonomy**: ⭐⭐⭐

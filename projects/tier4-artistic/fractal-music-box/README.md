@@ -1,4 +1,13 @@
-# Fractal Music Box
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Fractal Music Box — The Echoing Melody
+
+
+
+## 📖 The Analogy
+
+> A music box that plays a melody that is built into itself. Whether you listen to the whole song or zoom in on one tiny second, the rhythm remains exactly the same, repeating forever like an echo.
 
 > **Generates self-similar musical compositions based on Cantor dust**
 
@@ -40,6 +49,21 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+⬅️ **Previous**: [buddhabrot-renderer](../buddhabrot-renderer/README.md)
+ | ➡️ **Next**: [hilbert-curve-filler](../hilbert-curve-filler/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier4 | **Autonomy**: ⭐⭐⭐

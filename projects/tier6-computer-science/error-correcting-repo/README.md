@@ -1,4 +1,13 @@
-# Error-Correcting Repo
+### [⬅️ Back to Zoo Entrance](../../README.md) | [📖 Theory Index](../../docs/THEORY_INDEX.md)
+
+---
+# Error-Correcting Repo — The Self-Healing Manuscript
+
+
+
+## 📖 The Analogy
+
+> If a word in this manuscript gets smudged, it has a secret built-in code to fix itself. It's like a book that could heal its own paper if you tried to rip a page out.
 
 > **Self-heals by detecting bit-flips and restoring from redundancy**
 
@@ -40,6 +49,20 @@ python evolve.py  # Run one evolution step
 
 See [history.md](history.md) for the complete evolution timeline.
 
+
+## 🛠️ Technical Anatomy
+
+- **DNA**: [evolve.py](evolve.py) (The instructions for life)
+- **Vital Signs**: [state.json](state.json) (Current memory and state)
+- **Evolutionary Diary**: [history.md](history.md) (Historical logs)
+
+
+## 🏘️ Neighboring Organisms
+
+ | ➡️ **Next**: [random-walk-organizer](../random-walk-organizer/README.md)
+
 ---
+
+
 
 **Status**: 🟢 Fully Functional | **Tier**: Tier6 | **Autonomy**: ⭐⭐⭐
