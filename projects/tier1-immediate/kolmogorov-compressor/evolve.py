@@ -13,6 +13,25 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 # Configuration
 ALGO_FILE = "algorithm.py"
 STATE_FILE = "state.json"
@@ -97,6 +116,7 @@ def mutate(code):
     return code
 
 def main():
+    env = get_social_environment()
     print("🧬 Kolmogorov Compressor - Evolution Step")
     print("=" * 50)
     
@@ -146,7 +166,7 @@ def main():
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- **Result**: {change}\n")
         f.write(f"- **Current Size**: {state['best_size']} bytes\n")
         if change == "Compressed":

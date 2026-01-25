@@ -8,6 +8,25 @@ import json
 import math
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 def taxicab(p1, p2):
     return abs(p1[0]-p2[0]) + abs(p1[1]-p2[1])
 
@@ -25,6 +44,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     # Drift the points
     state["p2"][0] += 1
@@ -36,12 +56,14 @@ def evolve_step(state):
     return state
 
 def main():
+    env = get_social_environment()
     print("🧬 Metric Geometry - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "Two digital points drifted through the repo's topological space today. "
+    
     summary += f"The project compared how far they moved using two different 'yardsticks': the blocky Taxicab metric ({state['d_taxi']} units) and the straight-line Euclidean metric ({state['d_eucl']} units)."
 
     with open("state.json", "w") as f:
@@ -50,7 +72,7 @@ def main():
     with open("metrics.md", "a") as f:
         if state["generation"] == 1: f.write("# Topological Distance Metrics\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- P2 Position: {state['p2']} | Taxicab: {state['d_taxi']} | Euclidean: {state['d_eucl']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Points drifted.")

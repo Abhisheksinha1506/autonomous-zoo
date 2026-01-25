@@ -8,6 +8,25 @@ import json
 import math
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 GRID_SIZE = 20
 
 def load_state():
@@ -21,6 +40,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     # Interference of two sources
     grid = []
@@ -52,12 +72,14 @@ def render_ascii(state):
     return "\n".join(rows)
 
 def main():
+    env = get_social_environment()
     print("🧬 Wave Interference - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "Two digital oscillators vibrated through the repo's space today. "
+    
     summary += "Where their signals crossed, they created patterns of reinforcement and cancellation, mimicking the way light ripples or sound waves interact in the physical world."
 
     with open("state.json", "w") as f:
@@ -66,7 +88,7 @@ def main():
     with open("waves.md", "a") as f:
         if state["generation"] == 1: f.write("# Superposition Patterns\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"```\n{render_ascii(state)}\n```\n")
         
     print(f"✅ Generation {state['generation']} complete. Waves interfered.")

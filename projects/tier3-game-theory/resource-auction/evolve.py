@@ -8,6 +8,25 @@ import json
 import random
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 NUM_SLOTS = 5
 
 def load_state():
@@ -25,6 +44,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     
     # 1. Participants place random bids
@@ -45,12 +65,14 @@ def evolve_step(state):
     return state
 
 def main():
+    env = get_social_environment()
     print("🧬 Resource Auction - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "A digital economy simulation ran today. "
+    
     summary += f"Files bid for prominence within the repository, with winners identified as IDs {state['winners']}. The system is evolving toward a Pareto-optimal distribution of attention."
 
     with open("state.json", "w") as f:
@@ -59,7 +81,7 @@ def main():
     with open("auction_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Market Equilibrium Log\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- Winners IDs {state['winners']} | Avg Budget: {sum(p['budget'] for p in state['participants'])/len(state['participants']):.1f}\n")
         
     print(f"✅ Generation {state['generation']} complete. Auction settled.")

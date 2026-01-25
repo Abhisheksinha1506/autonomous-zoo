@@ -9,6 +9,25 @@ import math
 import random
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 GRID_SIZE = 15
 
 def load_state():
@@ -27,6 +46,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     u = state["velocity_u"]
     v = state["velocity_v"]
@@ -59,12 +79,14 @@ def render_flow(state):
     return "\n".join(rows)
 
 def main():
+    env = get_social_environment()
     print("🧬 Fluid Dynamics Flow - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "The digital fluids rippled through the repository today. "
+    
     summary += "Using simplified Navier-Stokes logic, the project simulated laminar flow and subtle turbulence, moving 'information mass' across the digital grid."
 
     with open("state.json", "w") as f:
@@ -73,7 +95,7 @@ def main():
     with open("flow_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Navier-Stokes Simulation Log\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"```\n{render_flow(state)}\n```\n")
         
     print(f"✅ Generation {state['generation']} complete. Fluid flowed.")

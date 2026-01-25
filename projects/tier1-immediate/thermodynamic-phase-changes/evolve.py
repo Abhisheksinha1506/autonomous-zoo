@@ -12,6 +12,25 @@ import random
 from datetime import datetime
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 # Configuration
 STATE_FILE = "state.json"
 HISTORY_FILE = "phase_log.md"
@@ -49,6 +68,7 @@ def get_energy(spins):
     return energy / 2.0  # Double counted
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     
     # Cooling schedule: Temperature drops over time
@@ -91,11 +111,13 @@ def render_ascii(state):
     return '\n'.join(rows)
 
 def log_evolution(state):
+    env = get_social_environment()
     ascii_art = render_ascii(state)
     timestamp = datetime.now().isoformat()
     
     # Create human-readable summary
     summary = f"The repo's ambient temperature shifted to {state['temperature']:.2f}. "
+    
     summary += f"The system is currently in a **{state['phase']}** state, where its internal components are {'aligning into a rigid structure' if 'Solid' in state['phase'] else 'fluctuating in a chaotic, high-energy dance'}."
 
     if not Path(HISTORY_FILE).exists():
@@ -104,13 +126,14 @@ def log_evolution(state):
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- **Temperature**: {state['temperature']:.3f}\n")
         f.write(f"- **Phase**: {state['phase']}\n")
         f.write(f"- **Magnetization**: {state['magnetization']}\n\n")
         f.write("```\n" + ascii_art + "\n```\n")
 
 def main():
+    env = get_social_environment()
     print("🧬 Thermodynamic Phase Changes - Evolution Step")
     print("=" * 50)
     

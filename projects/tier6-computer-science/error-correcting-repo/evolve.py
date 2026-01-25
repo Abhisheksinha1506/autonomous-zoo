@@ -8,6 +8,25 @@ import json
 import random
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 def calculate_checksum(data):
     """Simple parity check."""
     return sum(ord(c) for c in data) % 256
@@ -26,6 +45,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     files = state["files"]
     
@@ -60,6 +80,7 @@ def evolve_step(state):
     return state
 
 def main():
+    env = get_social_environment()
     print("🧬 Error-Correcting Repo - Evolution Step")
     state = load_state()
     state = evolve_step(state)
@@ -77,7 +98,7 @@ def main():
     with open("health_log.md", "a") as f:
         if state["generation"] == 1: f.write("# System Integrity History\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- Status Action: {state['action']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Repository integrity verified.")

@@ -8,6 +8,25 @@ import json
 import random
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 NODES = ["A", "B", "C", "D", "E"]
 
 def load_state():
@@ -32,6 +51,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     curr = state["current_node"]
     links = state["links"]
@@ -55,12 +75,14 @@ def evolve_step(state):
     return state
 
 def main():
+    env = get_social_environment()
     print("🧬 Random Walk Organizer - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "A digital wanderer took several random steps through the repo's network today. "
+    
     summary += f"By tracking which nodes were visited most often, the system identified a new 'hub' and strengthened the connection from {state['last_link'].split(':')[1] if 'hub' in state['last_link'] else 'itself'} to improve overall navigation."
 
     with open("state.json", "w") as f:
@@ -69,7 +91,7 @@ def main():
     with open("centrality.md", "a") as f:
         if state["generation"] == 1: f.write("# Centrality Hub Evolution\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- Hub Action: {state['last_link']} | Visits: {state['visits']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Hubs evolved.")

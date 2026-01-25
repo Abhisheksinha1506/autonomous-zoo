@@ -11,6 +11,25 @@ import random
 from datetime import datetime
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 # Configuration
 STATE_FILE = "state.json"
 HISTORY_FILE = "collatz_log.md"
@@ -36,6 +55,7 @@ def save_state(state):
         json.dump(state, f, indent=2)
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     
     n = state["current_n"]
@@ -77,6 +97,7 @@ def render_path_viz(state):
     return "\n".join(rows)
 
 def log_history(state):
+    env = get_social_environment()
     timestamp = datetime.now().isoformat()
     n = state["current_n"]
     
@@ -93,7 +114,7 @@ def log_history(state):
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- **Current N**: {n}\n")
         f.write(f"- **Max Reached in Sequence**: {state['max_reached']}\n")
         f.write(f"- **Path Length**: {len(state['path'])}\n\n")
@@ -102,6 +123,7 @@ def log_history(state):
             f.write("```\n" + render_path_viz(state) + "\n```\n")
 
 def main():
+    env = get_social_environment()
     print("🧬 Collatz Conjecture Explorer - Evolution Step")
     print("=" * 50)
     

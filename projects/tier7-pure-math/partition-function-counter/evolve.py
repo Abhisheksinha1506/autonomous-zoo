@@ -7,6 +7,25 @@ Tracks integer partitions; growth mimics Hardy-Ramanujan asymptotic formula.
 import json
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 def partition(n):
     """Simple integer partition counter (Recursive with memo)."""
     memo = {}
@@ -30,6 +49,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     # Increment n and calculate p(n)
     n = state["n"] + 1
@@ -38,6 +58,7 @@ def evolve_step(state):
     return state
 
 def main():
+    env = get_social_environment()
     print("🧬 Partition Function Counter - Evolution Step")
     state = load_state()
     # Handle complexity growth
@@ -49,6 +70,7 @@ def main():
     
     # Create human-readable summary
     summary = f"The repository explored the theory of additive partitions today, counting the ways to build the number {state['n']}. "
+    
     summary += f"The resulting count p({state['n']}) = {state['count']} adds another data point to the sequence, showing how quickly complexity grows from simple building blocks."
 
     with open("state.json", "w") as f:
@@ -57,7 +79,7 @@ def main():
     with open("partitions.md", "a") as f:
         if state["generation"] == 1: f.write("# Integer Partition History\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- Count: p({state['n']}) = {state['count']}\n")
         
     print(f"✅ Generation {state['generation']} complete. p({state['n']}) counted.")

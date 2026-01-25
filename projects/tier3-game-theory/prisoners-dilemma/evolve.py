@@ -8,6 +8,25 @@ import json
 import random
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 # Payoff Matrix (Row vs Column)
 # (C,C): 3,3 | (C,D): 0,5 | (D,C): 5,0 | (D,D): 1,1
 PAYOFFS = {
@@ -31,6 +50,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     agents = state["agents"]
     num = len(agents)
@@ -68,6 +88,7 @@ def render_ascii(state):
     return "".join(['█' if a['strategy'] == 'C' else '░' for a in state["agents"]])
 
 def main():
+    env = get_social_environment()
     print("🧬 Prisoner's Dilemma - Evolution Step")
     state = load_state()
     state = evolve_step(state)
@@ -88,7 +109,7 @@ def main():
     with open("game_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Game Theory Evolution Log\n\n")
         f.write(f"## Generation {state['generation']} — {coop_rate*100:.1f}% Coop\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- Grid State: `[{render_ascii(state)}]`\n\n")
         
     print(f"✅ Generation {state['generation']} complete. Strategies evolved.")

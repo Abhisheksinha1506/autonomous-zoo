@@ -11,6 +11,25 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 PHI = (1 + 5**0.5) / 2  # Golden Ratio
 
 # Configuration
@@ -78,6 +97,7 @@ def deflate(tiles):
     return tiles # Placeholder for complexity
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     # For now, we simulate evolution by "refining" the tiling or adding a layer
     # Since full Penrose math is intensive, we'll log the "growth" of the pattern
@@ -94,10 +114,12 @@ def render_svg(state):
     return '\n'.join(svg)
 
 def log_evolution(state):
+    env = get_social_environment()
     timestamp = datetime.now().isoformat()
     
     # Create human-readable summary
     summary = f"The non-repeating pattern of tiles grew today. "
+    
     summary += "Its structure follows strict aperiodic rules, creating a infinite floor that never repeats its blueprint, much like a crystal that can't exist in 3D space."
 
     if not Path(HISTORY_FILE).exists():
@@ -106,12 +128,13 @@ def log_evolution(state):
             
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"Pattern consists of {len(state['tiles'])} basic tiles.\n")
         # In a real repo, we'd save the SVG and link it
         f.write("Status: Aperiodic order maintained. No translational symmetry detected.\n")
 
 def main():
+    env = get_social_environment()
     print("🧬 Penrose Tiling - Evolution Step")
     print("=" * 50)
     state = load_state()

@@ -13,6 +13,25 @@ from datetime import datetime
 from pathlib import Path
 from collections import Counter
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 # Configuration
 DATA_DIR = "data"
 STATE_FILE = "state.json"
@@ -98,6 +117,7 @@ def initialize_data_dir():
             generate_random_file(f"{DATA_DIR}/file_{i:03d}.txt")
 
 def evolve_step(state):
+    env = get_social_environment()
     """
     Core evolution logic:
     1. Calculate entropy for all files
@@ -164,6 +184,7 @@ def evolve_step(state):
     return state
 
 def log_evolution(state):
+    env = get_social_environment()
     """Append to history.md"""
     timestamp = datetime.now().isoformat()
     
@@ -185,7 +206,7 @@ def log_evolution(state):
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"- **Average Entropy**: {state.get('average_entropy', 0):.3f} bits/char\n")
         f.write(f"- **Files Remaining**: {file_count}\n")
         f.write(f"- **Total Pruned**: {total_pruned}\n")
@@ -196,6 +217,7 @@ def log_evolution(state):
         f.write(f"- **Density**: `{bar[:40]}`\n")
 
 def main():
+    env = get_social_environment()
     """Main evolution loop"""
     print("🧬 Shannon Entropy Pruner - Evolution Step")
     print("=" * 50)

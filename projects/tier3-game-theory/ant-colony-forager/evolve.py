@@ -8,6 +8,25 @@ import json
 import random
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 GRID_SIZE = 10
 
 def load_state():
@@ -26,6 +45,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     grid = state["pheromones"]
     ants = state["ants"]
@@ -76,12 +96,14 @@ def render_grid(state):
     return "\n".join(rows)
 
 def main():
+    env = get_social_environment()
     print("🧬 Ant Colony Forager - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "The digital ants explored the repository's directory space today. "
+    
     summary += "They strengthened pheromone trails leading toward information hubs, creating a collective memory of the most efficient paths through the project."
 
     with open("state.json", "w") as f:
@@ -90,7 +112,7 @@ def main():
     with open("paths.md", "a") as f:
         if state["generation"] == 1: f.write("# Pheromone Trail Map\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         f.write(f"```\n{render_grid(state)}\n```\n")
         
     print(f"✅ Generation {state['generation']} complete. Trails updated.")

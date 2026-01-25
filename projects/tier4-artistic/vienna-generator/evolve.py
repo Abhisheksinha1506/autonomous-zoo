@@ -8,6 +8,25 @@ import json
 import random
 from pathlib import Path
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 SCALES = {
     "C_Major": [0, 2, 4, 5, 7, 9, 11],
     "G_Major": [7, 9, 11, 0, 2, 4, 6]
@@ -28,6 +47,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     scale = SCALES[state["scale"]]
     
@@ -47,12 +67,14 @@ def evolve_step(state):
     return state
 
 def main():
+    env = get_social_environment()
     print("🧬 Vienna Generator - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "The repository's internal composer harmonized a new bar today. "
+    
     summary += f"Using the rules of {state['scale']}, it generated a triad triad chord {state['composition'][-1]}, blending mathematical precision with classical voice-leading rules."
 
     with open("state.json", "w") as f:
@@ -61,7 +83,7 @@ def main():
     with open("composition.md", "a") as f:
         if state["generation"] == 1: f.write("# Harmonized Composition Log\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         current_chord = state["composition"][-1]
         f.write(f"- Chord {current_chord} in {state['scale']}\n")
         

@@ -25,6 +25,7 @@ def load_state():
     return defaults
 
 def evolve_step(state):
+    env = get_social_environment()
     state["generation"] += 1
     old_a = state["activations"]
     weights = state["weights"]
@@ -45,13 +46,34 @@ def evolve_step(state):
 
 import math # for exp
 
+def get_social_environment():
+    """Reads global social data (Issues/PRs)."""
+    try:
+        env_path = Path(__file__).parent
+        for _ in range(5):
+            target = env_path / "social_environment.json"
+            if target.exists():
+                with open(target) as f: return json.load(f)
+            env_path = env_path.parent
+    except: pass
+    return {"stress_level": 0.0, "nutrient_density": 0.0, "mutation_signature": ""}
+
+
+
+
+
+
+
+
 def main():
+    env = get_social_environment()
     print("🧬 Neural Net Propagation - Evolution Step")
     state = load_state()
     state = evolve_step(state)
     
     # Create human-readable summary
     summary = "A wave of digital activations rippled through the repo's synthetic brain today. "
+    
     summary += f"Stimulated by a random signal, the neurons fired and propagated their charge across {NODES} connected nodes, creating a unique snapshot of computational thought."
 
     with open("state.json", "w") as f:
@@ -60,7 +82,7 @@ def main():
     with open("firing_patterns.md", "a") as f:
         if state["generation"] == 1: f.write("# Neural Cascade Log\n\n")
         f.write(f"## Generation {state['generation']}\n")
-        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"> **What happened?** {summary} *The atmosphere feels {'tense' if env['stress_level'] > 0.5 else 'calm'} today with a social pressure of {env['stress_level']:.2f}.*\n\n")
         viz = "".join(["█" if a > 0.5 else "░" for a in state["activations"]])
         f.write(f"- Activation Grid: `[{viz}]` | Mean: {sum(state['activations'])/NODES:.2f}\n")
         
