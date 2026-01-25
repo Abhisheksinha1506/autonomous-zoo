@@ -79,12 +79,19 @@ def main():
     print("🧬 Ant Colony Forager - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "The digital ants explored the repository's directory space today. "
+    summary += "They strengthened pheromone trails leading toward information hubs, creating a collective memory of the most efficient paths through the project."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("paths.md", "a") as f:
         if state["generation"] == 1: f.write("# Pheromone Trail Map\n\n")
-        f.write(f"## Generation {state['generation']}\n```\n{render_grid(state)}\n```\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"```\n{render_grid(state)}\n```\n")
         
     print(f"✅ Generation {state['generation']} complete. Trails updated.")
 

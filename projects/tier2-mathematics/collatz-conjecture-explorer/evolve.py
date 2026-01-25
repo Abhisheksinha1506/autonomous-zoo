@@ -80,12 +80,20 @@ def log_history(state):
     timestamp = datetime.now().isoformat()
     n = state["current_n"]
     
+    # Create human-readable summary
+    if n == state["path"][-1] if state["path"] else False: # Sequence continues
+        summary = f"The sequence continue its chaotic walk today, moving to {n}. "
+        summary += "It hasn't reached the end (1) yet, continuing the search for an ultimate stable state."
+    else: # Reset seed
+        summary = f"The sequence reached its destination (1) yesterday! Today, we started a fresh journey with a new seed: {n}."
+
     if not Path(HISTORY_FILE).exists():
         with open(HISTORY_FILE, 'w') as f:
             f.write("# Collatz Conjecture Evolution Log\n\n")
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write(f"- **Current N**: {n}\n")
         f.write(f"- **Max Reached in Sequence**: {state['max_reached']}\n")
         f.write(f"- **Path Length**: {len(state['path'])}\n\n")

@@ -27,12 +27,19 @@ def main():
     print("🧬 Zeno's Paradox Divider - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "The repository's target distance was halved today. "
+    summary += f"Following Zeno's famous paradox, the project is approaching its destination but will never quite reach it, as it infinitely divide the remaining space into smaller and smaller increments."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("halvings.md", "a") as f:
         if state["generation"] == 1: f.write("# Infinite Division History\n\n")
-        f.write(f"- Gen {state['generation']}: Distance to goal: {state['distance']:.15f}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Current Distance to Goal: {state['distance']:.15f}\n")
         
     print(f"✅ Generation {state['generation']} complete. Halved.")
 

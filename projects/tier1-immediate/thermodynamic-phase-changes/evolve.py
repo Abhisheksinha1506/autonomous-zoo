@@ -94,12 +94,17 @@ def log_evolution(state):
     ascii_art = render_ascii(state)
     timestamp = datetime.now().isoformat()
     
+    # Create human-readable summary
+    summary = f"The repo's ambient temperature shifted to {state['temperature']:.2f}. "
+    summary += f"The system is currently in a **{state['phase']}** state, where its internal components are {'aligning into a rigid structure' if 'Solid' in state['phase'] else 'fluctuating in a chaotic, high-energy dance'}."
+
     if not Path(HISTORY_FILE).exists():
         with open(HISTORY_FILE, 'w') as f:
             f.write("# Thermodynamic Phase Evolution Log\n\n")
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write(f"- **Temperature**: {state['temperature']:.3f}\n")
         f.write(f"- **Phase**: {state['phase']}\n")
         f.write(f"- **Magnetization**: {state['magnetization']}\n\n")

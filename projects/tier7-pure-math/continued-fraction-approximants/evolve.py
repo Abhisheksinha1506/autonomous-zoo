@@ -43,12 +43,19 @@ def main():
     print("🧬 Continued Fraction Approximants - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "The project's mathematical 'lens' sharpened today. "
+    summary += f"By using continued fractions to calculate an approximation of Pi ({state['approx']}), it reduced its calculation error to {state['error']:.12e}, approaching infinite precision."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("pi_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Pi Approximation History\n\n")
-        f.write(f"- Gen {state['generation']}: PI ≈ {state['approx']} | Error: {state['error']:.12e}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- PI ≈ {state['approx']} | Error: {state['error']:.12e}\n")
         
     print(f"✅ Generation {state['generation']} complete. Approximation sharpened.")
 

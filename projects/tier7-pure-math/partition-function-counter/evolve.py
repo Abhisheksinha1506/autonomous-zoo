@@ -46,12 +46,19 @@ def main():
         state["n"] = 1
         
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The repository explored the theory of additive partitions today, counting the ways to build the number {state['n']}. "
+    summary += f"The resulting count p({state['n']}) = {state['count']} adds another data point to the sequence, showing how quickly complexity grows from simple building blocks."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("partitions.md", "a") as f:
         if state["generation"] == 1: f.write("# Integer Partition History\n\n")
-        f.write(f"- Gen {state['generation']}: p({state['n']}) = {state['count']}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Count: p({state['n']}) = {state['count']}\n")
         
     print(f"✅ Generation {state['generation']} complete. p({state['n']}) counted.")
 

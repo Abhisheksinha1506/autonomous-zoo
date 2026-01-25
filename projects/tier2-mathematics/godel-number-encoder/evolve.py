@@ -58,11 +58,16 @@ def evolve_step(state):
     return state
 
 def log_evolution(state):
+    # Create human-readable summary
+    summary = "Today, the repository's entire logic and structure was compressed into a single, massive integer. "
+    summary += "By using prime numbers as a alphabet, the project has encoded its own identity into a mathematical artifact."
+
     with open("encoding_log.md", "a") as f:
         if state["generation"] == 1:
             f.write("# Gödel Encoding Log\n\n")
         timestamp = datetime.now().isoformat()
         f.write(f"## Generation {state['generation']} — {timestamp[:10]}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write(f"- **Current Gödel Number (Essence)**: {state['last_number'][-20:]}...\n")
         f.write(f"- **Self-Reference Level**: Infinite\n\n")
 

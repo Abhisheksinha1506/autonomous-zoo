@@ -35,13 +35,20 @@ def main():
     print("🧬 Fractal Music Box - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "A self-similar rhythm was generated today using Cantor dust. "
+    summary += f"The melody is composed of repeating patterns that look identical whether you zoom in or zoom out, creating a recursive musical structure."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("fractal_score.md", "a") as f:
         if state["generation"] == 1: f.write("# Cantor Set Melodies\n\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         viz = "".join(["█" if b else "_" for b in state["pattern"]])
-        f.write(f"- Gen {state['generation']}: `|{viz}|` (Level {state['generation'] % 4 + 1})\n")
+        f.write(f"- Rhythm: `|{viz}|` (Level {state['generation'] % 4 + 1})\n")
         
     print(f"✅ Generation {state['generation']} complete. Fractal rhythm generated.")
 

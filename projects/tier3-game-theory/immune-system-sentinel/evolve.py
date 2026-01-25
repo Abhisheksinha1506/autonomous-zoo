@@ -49,12 +49,23 @@ def main():
     print("🧬 Immune System Sentinel - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The sentinel performed a deep scan of the repo's 'DNA' today. "
+    if "eliminated" in state["last_alert"]:
+        summary += f"It discovered a foreign file signature and successfully eliminated it to preserve the repository's structural integrity."
+    else:
+        summary += "The system is healthy; no anomalies or 'infections' were detected during the latest sweep."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("immune_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Primary Immune Response Log\n\n")
-        f.write(f"- Gen {state['generation']}: {state['last_alert']} | Self Sigs: {len(state['self_signatures'])}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- **Sentinel Status**: {state['last_alert']}\n")
+        f.write(f"- **Self-Signatures**: {len(state['self_signatures'])}\n\n")
         
     print(f"✅ Generation {state['generation']} complete. Sentinel active.")
 

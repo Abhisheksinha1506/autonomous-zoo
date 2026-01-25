@@ -62,12 +62,19 @@ def main():
     print("🧬 Fluid Dynamics Flow - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "The digital fluids rippled through the repository today. "
+    summary += "Using simplified Navier-Stokes logic, the project simulated laminar flow and subtle turbulence, moving 'information mass' across the digital grid."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("flow_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Navier-Stokes Simulation Log\n\n")
-        f.write(f"## Generation {state['generation']}\n```\n{render_flow(state)}\n```\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"```\n{render_flow(state)}\n```\n")
         
     print(f"✅ Generation {state['generation']} complete. Fluid flowed.")
 

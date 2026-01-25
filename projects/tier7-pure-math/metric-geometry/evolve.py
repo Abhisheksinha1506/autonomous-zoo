@@ -39,12 +39,19 @@ def main():
     print("🧬 Metric Geometry - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "Two digital points drifted through the repo's topological space today. "
+    summary += f"The project compared how far they moved using two different 'yardsticks': the blocky Taxicab metric ({state['d_taxi']} units) and the straight-line Euclidean metric ({state['d_eucl']} units)."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("metrics.md", "a") as f:
         if state["generation"] == 1: f.write("# Topological Distance Metrics\n\n")
-        f.write(f"- Gen {state['generation']}: P2 moved to {state['p2']} | Taxicab: {state['d_taxi']} | Euclidean: {state['d_eucl']}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- P2 Position: {state['p2']} | Taxicab: {state['d_taxi']} | Euclidean: {state['d_eucl']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Points drifted.")
 

@@ -95,12 +95,18 @@ def render_svg(state):
 
 def log_evolution(state):
     timestamp = datetime.now().isoformat()
+    
+    # Create human-readable summary
+    summary = f"The non-repeating pattern of tiles grew today. "
+    summary += "Its structure follows strict aperiodic rules, creating a infinite floor that never repeats its blueprint, much like a crystal that can't exist in 3D space."
+
     if not Path(HISTORY_FILE).exists():
         with open(HISTORY_FILE, 'w') as f:
             f.write("# Penrose Tiling Evolution\n\n")
             
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write(f"Pattern consists of {len(state['tiles'])} basic tiles.\n")
         # In a real repo, we'd save the SVG and link it
         f.write("Status: Aperiodic order maintained. No translational symmetry detected.\n")

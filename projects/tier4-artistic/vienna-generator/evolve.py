@@ -50,13 +50,20 @@ def main():
     print("🧬 Vienna Generator - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "The repository's internal composer harmonized a new bar today. "
+    summary += f"Using the rules of {state['scale']}, it generated a triad triad chord {state['composition'][-1]}, blending mathematical precision with classical voice-leading rules."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("composition.md", "a") as f:
         if state["generation"] == 1: f.write("# Harmonized Composition Log\n\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         current_chord = state["composition"][-1]
-        f.write(f"- Bar {state['generation']}: Chord {current_chord} in {state['scale']}\n")
+        f.write(f"- Chord {current_chord} in {state['scale']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Music composed.")
 

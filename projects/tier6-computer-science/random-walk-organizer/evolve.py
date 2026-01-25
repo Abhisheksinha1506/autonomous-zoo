@@ -58,12 +58,19 @@ def main():
     print("🧬 Random Walk Organizer - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "A digital wanderer took several random steps through the repo's network today. "
+    summary += f"By tracking which nodes were visited most often, the system identified a new 'hub' and strengthened the connection from {state['last_link'].split(':')[1] if 'hub' in state['last_link'] else 'itself'} to improve overall navigation."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("centrality.md", "a") as f:
         if state["generation"] == 1: f.write("# Centrality Hub Evolution\n\n")
-        f.write(f"- Gen {state['generation']}: Hub Action: {state['last_link']} | Visits: {state['visits']}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Hub Action: {state['last_link']} | Visits: {state['visits']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Hubs evolved.")
 

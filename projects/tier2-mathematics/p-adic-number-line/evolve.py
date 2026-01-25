@@ -51,12 +51,19 @@ def main():
     print(f"🧬 P-adic Number Line (p={P}) - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The repo structure grew deeper into prime territory today. "
+    summary += f"Under the p-adic metric (base {P}), the latest file was placed in a directory branch that 'converges' toward zero as the numbers get larger."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("tree_viz.md", "a") as f:
         if state["generation"] == 1: f.write("# P-adic Tree Visualization\n\n")
-        f.write(f"- Gen {state['generation']}: Added n={state['last_val']} at path `tree/{get_p_adic_path(state['last_val'], P)}`\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Added n={state['last_val']} at path `tree/{get_p_adic_path(state['last_val'], P)}`\n")
         
     print(f"✅ Generation {state['generation']} complete. Tree deepened.")
 

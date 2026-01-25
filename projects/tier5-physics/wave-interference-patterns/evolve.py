@@ -55,12 +55,19 @@ def main():
     print("🧬 Wave Interference - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "Two digital oscillators vibrated through the repo's space today. "
+    summary += "Where their signals crossed, they created patterns of reinforcement and cancellation, mimicking the way light ripples or sound waves interact in the physical world."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("waves.md", "a") as f:
         if state["generation"] == 1: f.write("# Superposition Patterns\n\n")
-        f.write(f"## Generation {state['generation']}\n```\n{render_ascii(state)}\n```\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"```\n{render_ascii(state)}\n```\n")
         
     print(f"✅ Generation {state['generation']} complete. Waves interfered.")
 

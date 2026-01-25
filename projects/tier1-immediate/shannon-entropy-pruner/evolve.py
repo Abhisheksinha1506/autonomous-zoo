@@ -175,11 +175,20 @@ def log_evolution(state):
     
     file_count = len(list(Path(DATA_DIR).glob('*.txt')))
     
+    # Create human-readable summary
+    total_pruned = state.get('total_files_pruned', 0)
+    summary = f"The pruner scanned {file_count + total_pruned} files today. "
+    if total_pruned > 0:
+        summary += f"It discovered and 'recycled' some repetitive files to keep the repo's information density ultra-high."
+    else:
+        summary += "All current files contain dense, high-quality information, so no cleanup was required."
+
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Average Entropy**: {state['average_entropy']:.3f} bits/char\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- **Average Entropy**: {state.get('average_entropy', 0):.3f} bits/char\n")
         f.write(f"- **Files Remaining**: {file_count}\n")
-        f.write(f"- **Total Pruned**: {state['total_files_pruned']}\n")
+        f.write(f"- **Total Pruned**: {total_pruned}\n")
         
         # Visual bar
         bar_length = int(state['average_entropy'] * 10)

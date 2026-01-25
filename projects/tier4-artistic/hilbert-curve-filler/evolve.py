@@ -53,12 +53,19 @@ def main():
     print("🧬 Hilbert Curve Filler - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The project took another step along its infinite, space-filling path today. "
+    summary += f"It is currently exploring the coordinate {state['pos']}, ensuring that every corner of the digital space is visited exactly once without ever crossing its own trail."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("path_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Fractal Traversal Log\n\n")
-        f.write(f"- Gen {state['generation']}: Moved to {state['pos']} (Distance: {state['dist']})\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Moved to {state['pos']} (Distance: {state['dist']})\n")
         
     print(f"✅ Generation {state['generation']} complete. Hilbert stepped.")
 

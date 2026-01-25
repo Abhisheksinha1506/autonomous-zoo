@@ -63,12 +63,22 @@ def main():
     print("🧬 Error-Correcting Repo - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The repository's 'digital immune system' checked for bit-level errors today. "
+    if "Corruption detected" in state["action"]:
+        summary += f"It discovered a small corruption in a file and immediately used its internal redundancy to self-heal, restoring the original state without any loss of logic."
+    else:
+        summary += "The repo's data integrity is perfect; no errors or 'bit-flips' were detected during the latest sweep."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("health_log.md", "a") as f:
         if state["generation"] == 1: f.write("# System Integrity History\n\n")
-        f.write(f"- Gen {state['generation']}: {state['action']}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Status Action: {state['action']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Repository integrity verified.")
 

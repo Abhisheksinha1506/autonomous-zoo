@@ -136,8 +136,17 @@ def main():
         with open(HISTORY_FILE, 'w') as f:
             f.write("# Evolution History\n\n")
 
+    # Create human-readable summary
+    if change == "Compressed":
+        summary = f"Success! The compressor found a more efficient way to represent the algorithm, shaving off {current_size - mutated_size} bytes while keeping the logic identical."
+    elif change == "Failed mutation":
+        summary = "An attempt was made to simplify the code, but the resulting mutation failed its self-test. The original code was preserved for safety."
+    else:
+        summary = "The compressor searched for a shorter version of its code today but couldn't find a simpler valid representation. The algorithm remains at peak efficiency."
+
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write(f"- **Result**: {change}\n")
         f.write(f"- **Current Size**: {state['best_size']} bytes\n")
         if change == "Compressed":

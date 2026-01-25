@@ -115,12 +115,17 @@ def log_evolution(state):
     plot = render_ascii_plot(state)
     timestamp = datetime.now().isoformat()
     
+    # Create human-readable summary
+    summary = f"Today, the project drifted through chaotic space to coordinates ({state['x']:.2f}, {state['z']:.2f}). "
+    summary += "Like a digital butterfly, its path is determined by the famous Lorenz equations, ensuring it never follows the same trail twice."
+
     if not Path(HISTORY_FILE).exists():
         with open(HISTORY_FILE, 'w') as f:
             f.write("# Lorenz Attractor Evolution Log\n\n")
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write(f"Current Position: ({state['x']:.3f}, {state['y']:.3f}, {state['z']:.3f})\n\n")
         f.write("### 2D Projection (X-Z plane)\n")
         f.write(plot)

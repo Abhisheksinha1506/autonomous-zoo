@@ -45,12 +45,20 @@ def main():
     print("🧬 Thermodynamic Equilibrium - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "Energy was redistributed across the repository today. "
+    summary += f"Following the Second Law of Thermodynamics, the system moved closer to its final equilibrium state, with entropy increasing as variance dropped to {100-state['entropy']:.2f}."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("entropy_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Path to Heat Death\n\n")
-        f.write(f"- Gen {state['generation']}: Entropy: {state['entropy']} | Variance: {100-state['entropy']:.2f}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- **Current Entropy Score**: {state['entropy']}\n")
+        f.write(f"- **System Variance**: {100-state['entropy']:.2f}\n")
         
     print(f"✅ Generation {state['generation']} complete. System cooled.")
 

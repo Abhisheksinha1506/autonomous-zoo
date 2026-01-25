@@ -48,12 +48,19 @@ def main():
     print("🧬 Resource Auction - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "A digital economy simulation ran today. "
+    summary += f"Files bid for prominence within the repository, with winners identified as IDs {state['winners']}. The system is evolving toward a Pareto-optimal distribution of attention."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("auction_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Market Equilibrium Log\n\n")
-        f.write(f"- Gen {state['generation']}: Winners IDs {state['winners']} | Avg Budget: {sum(p['budget'] for p in state['participants'])/len(state['participants']):.1f}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Winners IDs {state['winners']} | Avg Budget: {sum(p['budget'] for p in state['participants'])/len(state['participants']):.1f}\n")
         
     print(f"✅ Generation {state['generation']} complete. Auction settled.")
 

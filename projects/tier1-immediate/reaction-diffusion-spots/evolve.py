@@ -122,12 +122,17 @@ def log_evolution(state):
     ascii_art = render_ascii(state)
     timestamp = datetime.now().isoformat()
     
+    # Create human-readable summary
+    summary = f"Chemical reactions pulsed through the digital grid today. "
+    summary += "A new pattern of Turing spots has emerged, mimicking the biological markings of a leopard or the complex ripples of a chemical bath."
+
     if not Path(HISTORY_FILE).exists():
         with open(HISTORY_FILE, 'w') as f:
             f.write("# Reaction-Diffusion Evolution Log\n\n")
 
     with open(HISTORY_FILE, 'a') as f:
         f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write("```\n" + ascii_art + "\n```\n")
 
 def main():

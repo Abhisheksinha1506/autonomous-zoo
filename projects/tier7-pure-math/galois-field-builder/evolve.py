@@ -31,12 +31,19 @@ def main():
     print(f"🧬 Galois Field GF({P}) - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The repo's abstract algebraic space underwent a modular transformation today. "
+    summary += f"Using {state['current_op']}, the symbols in the field were shifted into a new configuration, demonstrating how finite number systems maintain consistency even when perfectly rearranged."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("field_log.md", "a") as f:
         if state["generation"] == 1: f.write(f"# GF({P}) Evolution Log\n\n")
-        f.write(f"- Gen {state['generation']}: Op: {state['current_op']} | Field: {state['result_field']}\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Operation: {state['current_op']} | Resulting Field Elements: {state['result_field']}\n")
         
     print(f"✅ Generation {state['generation']} complete. Field shifted.")
 

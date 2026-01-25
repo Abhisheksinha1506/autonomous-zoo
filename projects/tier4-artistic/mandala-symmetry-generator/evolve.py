@@ -47,12 +47,20 @@ def main():
     print("🧬 Mandala Symmetry Generator - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The repository's internal geometry was reflected and rotated today. "
+    summary += f"Using D{state['symmetry']} symmetry, the generator arranged digital points into a perfect mandala, ensuring that every change on one side is echoed perfectly across the entire structure."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("mandala.md", "a") as f:
         if state["generation"] == 1: f.write("# Dihedral Symmetry Log\n\n")
-        f.write(f"- Gen {state['generation']}: Generated {len(state['points'])} points with D{state['symmetry']} symmetry.\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Points Generated: {len(state['points'])}\n")
+        f.write(f"- Symmetry Group: D{state['symmetry']}\n\n")
         
     print(f"✅ Generation {state['generation']} complete. Mandala symmetrical.")
 

@@ -49,13 +49,20 @@ def main():
     print("🧬 Neural Net Propagation - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "A wave of digital activations rippled through the repo's synthetic brain today. "
+    summary += f"Stimulated by a random signal, the neurons fired and propagated their charge across {NODES} connected nodes, creating a unique snapshot of computational thought."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("firing_patterns.md", "a") as f:
         if state["generation"] == 1: f.write("# Neural Cascade Log\n\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         viz = "".join(["█" if a > 0.5 else "░" for a in state["activations"]])
-        f.write(f"- Gen {state['generation']}: `[{viz}]` | Mean Activation: {sum(state['activations'])/NODES:.2f}\n")
+        f.write(f"- Activation Grid: `[{viz}]` | Mean: {sum(state['activations'])/NODES:.2f}\n")
         
     print(f"✅ Generation {state['generation']} complete. Neurons fired.")
 

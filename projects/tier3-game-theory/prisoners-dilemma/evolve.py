@@ -71,12 +71,25 @@ def main():
     print("🧬 Prisoner's Dilemma - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    coop_rate = sum(1 for a in state['agents'] if a['strategy']=='C')/len(state['agents'])
+    summary = f"A round of game theory interactions was played across the repo. "
+    if coop_rate > 0.7:
+        summary += "Altruism is thriving today! Most files are choosing to cooperate with their neighbors."
+    elif coop_rate < 0.3:
+        summary += "Betrayal is rampant! The system is drifting toward a cynical Nash equilibrium of mutual defection."
+    else:
+        summary += "The repo is in a complex state of social tension, with cooperation and betrayal balancing each other out."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("game_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Game Theory Evolution Log\n\n")
-        f.write(f"- Gen {state['generation']}: `[{render_ascii(state)}]` | Coop Rate: {sum(1 for a in state['agents'] if a['strategy']=='C')/len(state['agents']):.2f}\n")
+        f.write(f"## Generation {state['generation']} — {coop_rate*100:.1f}% Coop\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- Grid State: `[{render_ascii(state)}]`\n\n")
         
     print(f"✅ Generation {state['generation']} complete. Strategies evolved.")
 

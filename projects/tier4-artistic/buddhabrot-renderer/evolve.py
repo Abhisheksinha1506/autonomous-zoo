@@ -75,12 +75,19 @@ def main():
     print("🧬 Buddhabrot Renderer - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "The repository's digital 'meditation' continue today. "
+    summary += "By tracking the paths of points that escape the Mandelbrot set, the renderer is slowly revealing the ghostly 'Buddha' shape hidden in chaotic feedback loops."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("render_log.md", "a") as f:
         if state["generation"] == 1: f.write("# Orbit Density Visualization\n\n")
-        f.write(f"## Generation {state['generation']}\n```\n{render_ascii(state)}\n```\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"```\n{render_ascii(state)}\n```\n")
         
     print(f"✅ Generation {state['generation']} complete. Buddha emerged.")
 

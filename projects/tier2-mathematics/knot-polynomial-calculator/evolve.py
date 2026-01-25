@@ -41,12 +41,18 @@ def main():
     print("🧬 Knot Polynomial Calculator - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = f"The mathematical knot in this repository executed a {state['action']} today. "
+    summary += "Its structural invariant (the Jones Polynomial) has shifted, reflecting a new topology that is fundamentally different from yesterday's state."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("polynomials.md", "a") as f:
         if state["generation"] == 1: f.write("# Knot Invariants Log\n\n")
         f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
         f.write(f"- **Action**: {state['action']}\n")
         f.write(f"- **Jones Polynomial**: V(t) = {state['polynomial']}\n\n")
         

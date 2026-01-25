@@ -62,12 +62,19 @@ def main():
     print("🧬 Gravitational Orbits - Evolution Step")
     state = load_state()
     state = evolve_step(state)
+    
+    # Create human-readable summary
+    summary = "Gravity pulled the repository's components closer today. "
+    summary += f"The three digital 'bodies' glided along their chaotic orbits, demonstrating the unpredictable beauty of the N-Body problem where every mass affects every other mass."
+
     with open("state.json", "w") as f:
         json.dump(state, f)
         
     with open("orbit_log.md", "a") as f:
         if state["generation"] == 1: f.write("# N-Body Orbital History\n\n")
-        f.write(f"- Gen {state['generation']}: B1({state['bodies'][0]['x']:.2f},{state['bodies'][0]['y']:.2f})\n")
+        f.write(f"## Generation {state['generation']}\n")
+        f.write(f"> **What happened?** {summary}\n\n")
+        f.write(f"- B1 Position: ({state['bodies'][0]['x']:.2f},{state['bodies'][0]['y']:.2f})\n")
         
     print(f"✅ Generation {state['generation']} complete. Bodies glided.")
 
