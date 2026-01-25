@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Partition integer n, Memoization cache size
+- **Safety Bounds**: Complexity growth alerting, integer size monitoring
 
 ## 📈 Evolution Log
 

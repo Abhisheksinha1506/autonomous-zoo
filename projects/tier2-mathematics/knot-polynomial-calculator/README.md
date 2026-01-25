@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Crossing count, R-move iteration limit
+- **Safety Bounds**: Self-crossing validation, polynomial complexity cap
 
 ## 📈 Evolution Log
 

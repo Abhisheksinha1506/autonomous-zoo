@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Prime p, Valuation norm factor
+- **Safety Bounds**: Strict p-adic metric bounds, tree depth limits
 
 ## 📈 Evolution Log
 

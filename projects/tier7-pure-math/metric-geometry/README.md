@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Point coordinates, Metric type (L1, L2)
+- **Safety Bounds**: Coordinate grid clamping, NaN distance protection
 
 ## 📈 Evolution Log
 

@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Energy transfer rate, Particle count
+- **Safety Bounds**: Total energy conservation, temperature floor at 0
 
 ## 📈 Evolution Log
 

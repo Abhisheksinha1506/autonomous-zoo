@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Order (Subdivision depth), Phi (Golden Ratio)
+- **Safety Bounds**: Memory limit on tile count, recursion depth anchoring
 
 ## 📈 Evolution Log
 

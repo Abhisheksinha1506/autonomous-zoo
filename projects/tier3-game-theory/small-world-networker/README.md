@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Nodes=20, Rewiring probability P=0.1
+- **Safety Bounds**: Connectivity validation (BFS), maximum path length anchoring
 
 ## 📈 Evolution Log
 

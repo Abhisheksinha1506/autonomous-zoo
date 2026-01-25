@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Prime P, Generator polynomial
+- **Safety Bounds**: Modular wrap-around validation, field size limits
 
 ## 📈 Evolution Log
 

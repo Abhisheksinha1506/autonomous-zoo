@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Seed range [2, 1000], Maximum step count
+- **Safety Bounds**: Auto-reset on reaching 1, cycle detection bounds
 
 ## 📈 Evolution Log
 

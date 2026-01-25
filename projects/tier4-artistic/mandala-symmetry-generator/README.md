@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Rotational order n=12, Reflection toggle
+- **Safety Bounds**: Coordinate symmetry validation, grid resolution cap
 
 ## 📈 Evolution Log
 

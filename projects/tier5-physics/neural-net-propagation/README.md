@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Firing threshold, Decay rate, Synaptic weights
+- **Safety Bounds**: Cascading signal limits, node activation frequency caps
 
 ## 📈 Evolution Log
 

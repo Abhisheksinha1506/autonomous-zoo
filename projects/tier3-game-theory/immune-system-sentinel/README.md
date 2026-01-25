@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Detection threshold, Clone count, Mutation factor
+- **Safety Bounds**: Self-recognition exclusion, antibody population cap
 
 ## 📈 Evolution Log
 

@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Feed=0.0367, Kill=0.0649, dt=1.0
+- **Safety Bounds**: Grid saturation limit, pattern stability check
 
 ## 📈 Evolution Log
 

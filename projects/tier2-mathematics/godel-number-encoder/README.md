@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Prime Base (2, 3, 5...), Charset encoding map
+- **Safety Bounds**: Integer overflow protection (using Python large ints), file size limits
 
 ## 📈 Evolution Log
 

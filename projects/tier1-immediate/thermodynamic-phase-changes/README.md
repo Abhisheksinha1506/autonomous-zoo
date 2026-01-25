@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Coupling=1.0, Temperature=2.269 (Critical)
+- **Safety Bounds**: Maximum flip energy limit, thermodynamic sweep bounds
 
 ## 📈 Evolution Log
 

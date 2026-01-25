@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Sequence depth, Error tolerance
+- **Safety Bounds**: Denominator growth monitoring, floating point precision limits
 
 ## 📈 Evolution Log
 

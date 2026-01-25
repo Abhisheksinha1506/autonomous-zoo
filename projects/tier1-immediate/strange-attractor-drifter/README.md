@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Sigma=10.0, Rho=28.0, Beta=2.667
+- **Safety Bounds**: Coordinates bounded to [-50, 50], State normalization
 
 ## 📈 Evolution Log
 

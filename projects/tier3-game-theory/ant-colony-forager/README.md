@@ -45,8 +45,8 @@ python evolve.py  # Run one evolution step
 ## 🔬 Technical Details
 
 - **Algorithm**: Custom mathematical evolution logic
-- **Parameters**: [TODO: List parameters]
-- **Safety Bounds**: [TODO: Describe limits]
+- **Parameters**: Alpha (Pheromone weight), Beta (Vision weight), Evaporation rate
+- **Safety Bounds**: Pheromone concentration limits, pathfinding loop detection
 
 ## 📈 Evolution Log
 
