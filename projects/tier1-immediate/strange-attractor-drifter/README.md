@@ -1,0 +1,45 @@
+# Strange Attractor Drifter
+
+> **Files drift along butterfly-wing paths; sensitive to initial conditions**
+
+## 🧠 Mathematical Concept
+
+**Chaos Theory (Lorenz)**
+
+[TODO: Add detailed mathematical explanation]
+
+## 🎯 What This Does
+
+Every day, the repository:
+1. [TODO: Describe evolution steps]
+2. [TODO: Describe state changes]
+3. Logs progress to `history.md`
+
+## 📊 Current State
+
+- **Generation**: Check `state.json`
+- **Status**: See `history.md`
+
+## 🚀 Running Locally
+
+```bash
+python evolve.py  # Run one evolution step
+```
+
+## 📖 Layman Explanation
+
+"A weather simulation where moving a butterfly one wing changes the path of a hurricane a week later."
+
+## 🔬 Technical Details
+
+- **Algorithm**: [TODO: Specify algorithm]
+- **Parameters**: [TODO: List parameters]
+- **Safety Bounds**: [TODO: Describe limits]
+
+## 📈 Evolution Log
+
+See [history.md](history.md) for the complete evolution timeline.
+
+---
+
+**Status**: 🟡 Scaffolded | **Tier**: Tier1 | **Autonomy**: ⭐⭐⭐

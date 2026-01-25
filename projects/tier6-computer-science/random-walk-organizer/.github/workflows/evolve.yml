@@ -1,0 +1,42 @@
+name: Daily Evolution
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run evolution step
+        run: python evolve.py
+        working-directory: projects/tier6-computer-science/random-walk-organizer
+      
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Autonomous Evolution Bot"
+          git add projects/tier6-computer-science/random-walk-organizer/
+          git diff --quiet && git diff --staged --quiet || \
+            git commit -m "🧬 Evolution: $(date +%Y-%m-%d)"
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main

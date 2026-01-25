@@ -1,0 +1,70 @@
+name: Meta Health Check
+
+on:
+  schedule:
+    - cron: '0 12 * * 0'  # Weekly on Sunday at noon UTC
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Check all projects
+        run: |
+          echo "# Autonomous Zoo Health Report" > health_report.md
+          echo "Generated: $(date)" >> health_report.md
+          echo "" >> health_report.md
+          
+          total=0
+          working=0
+          
+          for tier in projects/*/; do
+            echo "## $(basename $tier)" >> health_report.md
+            for project in $tier*/; do
+              if [ -f "$project/evolve.py" ]; then
+                total=$((total + 1))
+                echo -n "Checking $(basename $project)... "
+                
+                if cd "$project" && python evolve.py 2>&1 | grep -q "complete"; then
+                  echo "✅" >> ../../health_report.md
+                  echo "✅"
+                  working=$((working + 1))
+                else
+                  echo "⚠️" >> ../../health_report.md
+                  echo "⚠️"
+                fi
+                cd - > /dev/null
+              fi
+            done
+            echo "" >> health_report.md
+          done
+          
+          echo "## Summary" >> health_report.md
+          echo "- **Total Projects**: $total" >> health_report.md
+          echo "- **Working**: $working" >> health_report.md
+          echo "- **Health**: $((working * 100 / total))%" >> health_report.md
+          
+          cat health_report.md
+      
+      - name: Commit health report
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Health Check Bot"
+          git add health_report.md
+          git diff --quiet && git diff --staged --quiet || \
+            git commit -m "📊 Weekly health check: $(date +%Y-%m-%d)"
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
