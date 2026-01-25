@@ -15,13 +15,16 @@
 
 **Critical Phenomena**
 
-[TODO: Add detailed mathematical explanation]
+The Ising Model. A mathematical representation of magnetism in statistical mechanics, used to study phase transitions where local interactions cause a global shift in state (solid, liquid, or gas).
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Manages a grid of 'spins' (up/down particles)
+2. Calculates system energy and current temperature
+3. Uses the Metropolis algorithm to flip spins and reach equilibrium
+4. Detects 'Phase Transitions' when the system suddenly aligns or becomes chaotic.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

@@ -15,13 +15,16 @@
 
 **Graph Computation**
 
-[TODO: Add detailed mathematical explanation]
+Neural Activation Models. Simulates how biological neurons fire and pass signals to neighbors via synaptic connections, creating complex patterns of electrical activity.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Stimulates a random 'Node' in a network of 15 virtual neurons
+2. Propagates the signal across 'Weights' to connected neighbors
+3. Applies an activation function to decide if the next neuron should 'Fire'
+4. Logs the cascading firing patterns to the repository's history.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

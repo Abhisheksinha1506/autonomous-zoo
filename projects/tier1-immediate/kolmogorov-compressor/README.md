@@ -15,13 +15,16 @@
 
 **Algorithmic Complexity**
 
-[TODO: Add detailed mathematical explanation]
+Algorithmic Information Theory (Kolmogorov Complexity). The Kolmogorov complexity of an object is the length of the shortest computer program that produces that object as output.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Reads its own `evolve.py` source code
+2. Performs a random semantic-preserving mutation (e.g., changing variable names or whitespace)
+3. Runs a self-test to ensure the algorithm still works
+4. If the new version is shorter and valid, it replaces the old source code.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

@@ -15,13 +15,16 @@
 
 **Diophantine Approx**
 
-[TODO: Add detailed mathematical explanation]
+Continued Fractions. An infinite sequence of integers used to represent real numbers (like Pi or e) with increasing precision as more terms are added.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Starts with the first term of the continued fraction for Pi (3)
+2. Adds a new term from the sequence in each generation
+3. Calculates the resulting 'Sharpest Fraction' for that level of focus
+4. Measures the 'Calculation Error' to show the closing gap toward infinity.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

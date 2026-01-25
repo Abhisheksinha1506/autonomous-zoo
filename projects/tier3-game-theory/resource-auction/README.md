@@ -15,13 +15,16 @@
 
 **Market Equilibrium**
 
-[TODO: Add detailed mathematical explanation]
+Vickrey-Clarke-Groves (VCG) Auctions. A mechanism for allocating resources where participants are incentivized to bid their true valuation of an item.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Identifies 5 'Storage Slots' available in the repository
+2. Collects 'Bids' from 10 competing project files
+3. Allocates slots to the highest bidders
+4. Updates the 'Budgets' and 'Prominence' of each file based on market outcome.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

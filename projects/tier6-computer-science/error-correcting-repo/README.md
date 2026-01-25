@@ -15,13 +15,16 @@
 
 **Hamming Distance**
 
-[TODO: Add detailed mathematical explanation]
+Hamming Distance & Error Correction. A method for detecting and fixing bit-level corruption by using redundant data (Checkmoving and Parity bits).
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Watches a critical 'Health File' for random bit-flips
+2. Calculates a checksum signature for every generation
+3. Detects if the current file content has been corrupted
+4. Uses an internal backup to 'Self-Heal' and restore the repository's integrity.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

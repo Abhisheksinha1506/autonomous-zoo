@@ -15,13 +15,16 @@
 
 **Infinite Series**
 
-[TODO: Add detailed mathematical explanation]
+Asymptotic Limits. Based on the paradox where to reach a point, you must first reach halfway, then halfway again, infinitely approaching but never touching the goal.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Starts at a distance of 100 units from the 'Final Goal'
+2. Divides the remaining distance by 2 in every generation
+3. Checks the current position against a limit of nearly infinite decimals
+4. Proves the existence of a limit where distance effectively becomes zero.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

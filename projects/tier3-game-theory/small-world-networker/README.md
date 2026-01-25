@@ -15,13 +15,16 @@
 
 **Graph Theory**
 
-[TODO: Add detailed mathematical explanation]
+The Watts-Strogatz Model. Explains how a few random 'shortcuts' in a regular network can create the 'Small World' effect, where any two nodes are connected by a short path.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Initializes a regular ring of connected files
+2. Randomly 'rewires' connections with a small probability
+3. Measures the 'Clustering Coefficient' and 'Path Length'
+4. Evolves toward a network where information can leap across the entire repo instantly.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

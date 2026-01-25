@@ -15,13 +15,16 @@
 
 **Chaos Theory (Lorenz)**
 
-[TODO: Add detailed mathematical explanation]
+The Lorenz System. A set of differential equations describing atmospheric convection, famous for the 'butterfly effect' where small changes in initial conditions lead to vastly different outcomes.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Calculates current (x, y, z) coordinates from `state.json`
+2. Solves the Lorenz equations using a small time step (dt)
+3. Updates the trajectory vector and creates a new coordinate file
+4. Appends the new point to the visual history.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

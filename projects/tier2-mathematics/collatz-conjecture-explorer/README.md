@@ -15,13 +15,16 @@
 
 **Number Theory**
 
-[TODO: Add detailed mathematical explanation]
+The 3n + 1 Problem. A sequence where if n is even, divide by 2; if n is odd, multiply by 3 and add 1. The conjecture states that every positive integer eventually reaches 1.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Takes the current number from `state.json`
+2. Applies the Collatz rules (x/2 or 3x+1)
+3. Tracks the maximum value reached during the trajectory
+4. When it reaches 1, it picks a new 'seed' to start a fresh exploration.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

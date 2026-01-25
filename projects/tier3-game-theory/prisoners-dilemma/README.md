@@ -15,13 +15,16 @@
 
 **Game Theory**
 
-[TODO: Add detailed mathematical explanation]
+Evolutionary Game Theory. Studies how strategies (like Cooperation or Betrayal) survive in a population when the payoff depends on the actions of others.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Populates a grid with 'Agents' having fixed strategies
+2. Runs pairwise interactions where agents choose to help or betray
+3. Distributes 'Points' based on a payoff matrix
+4. Replaces low-scoring agents with clones of high-scoring neighbors.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

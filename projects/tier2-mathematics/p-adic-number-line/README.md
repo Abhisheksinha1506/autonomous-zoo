@@ -15,13 +15,16 @@
 
 **Metric Geometry**
 
-[TODO: Add detailed mathematical explanation]
+p-adic Analysis. An alternative to the standard real number system where 'closeness' is determined by divisibility by a prime number p. Useful in number theory and cryptography.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Sets a base prime 'p' for the coordinate system
+2. Places files at positions along a p-adic tree
+3. Calculates distances between files using the p-adic norm
+4. Drifts the files such that 'far' objects in standard math become 'close' in p-adic space.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

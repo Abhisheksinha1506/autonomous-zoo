@@ -15,13 +15,16 @@
 
 **Combinatorics**
 
-[TODO: Add detailed mathematical explanation]
+Number Theory (Integer Partitions). Counts the number of ways a positive integer n can be written as a sum of other positive integers.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Takes the next integer in the sequence (e.g., n=1, 2, 3...)
+2. Uses a recursive algorithm with memory to calculate p(n)
+3. Tracks how the number of possibilities grows (Hardy-Ramanujan growth)
+4. Logs each new 'Complexity Data Point' to the repository's history.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

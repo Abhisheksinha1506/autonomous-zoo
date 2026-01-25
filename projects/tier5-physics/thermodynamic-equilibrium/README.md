@@ -15,13 +15,16 @@
 
 **Entropy / 2nd Law**
 
-[TODO: Add detailed mathematical explanation]
+Entropy and the Second Law of Thermodynamics. States that in an isolated system, disorder (Entropy) always increases until it reaches a state of maximum balance.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Assigns random 'Energy Levels' to 20 internal cells
+2. Simulates energy exchange between neighboring cells
+3. Measures 'System Variance' as a proxy for order/disorder
+4. Watches as the system cools down and stabilizes at its 'Entropy Peak'.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

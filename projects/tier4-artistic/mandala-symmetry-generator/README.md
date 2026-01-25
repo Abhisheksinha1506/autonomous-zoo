@@ -15,13 +15,16 @@
 
 **Dihedral Groups**
 
-[TODO: Add detailed mathematical explanation]
+Group Theory (Dihedral Groups). Studies the symmetries of regular polygons, including rotations and reflections that preserve the geometric structure.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Generates a single 'Seed Point' in a small wedge of space
+2. Reflects the point across the central axis
+3. Rotates the pair of points multiple times to fill a circular grid
+4. Coordinates the whole group into a perfectly balanced Mandala pattern.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

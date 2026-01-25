@@ -15,13 +15,16 @@
 
 **Logic / Self-Reference**
 
-[TODO: Add detailed mathematical explanation]
+Gödel Numbering. A mapping that assigns to each symbol and formula of a formal language a unique natural number, allowing mathematical logic to analyze itself.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Takes the current text of the repository README
+2. Breaks the text into symbols and maps them to a sequence of prime numbers
+3. Multiplies these primes together (raised to the power of the symbol code)
+4. Stores the resulting massive 'Gödel Number' as the repo's unique identity.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

@@ -15,13 +15,16 @@
 
 **Finite Fields**
 
-[TODO: Add detailed mathematical explanation]
+Abstract Algebra (Finite Fields). A field that contains a finite number of elements, where addition and multiplication always wrap around (Modular Arithmetic).
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Initializes a field of prime size P (e.g., GF(7))
+2. Selects a mathematical 'Transformation Rule' for today
+3. Applies the rule to every element in the field simultaneously
+4. Verifies that the resulting set still follows the laws of finite field theory.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

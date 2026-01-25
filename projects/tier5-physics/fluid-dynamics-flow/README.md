@@ -15,13 +15,16 @@
 
 **Navier-Stokes**
 
-[TODO: Add detailed mathematical explanation]
+Navier-Stokes Equations. The fundamental equations of fluid mechanics that describe how the velocity, pressure, and temperature of a moving fluid are related.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Operates on a 15x15 grid of 'Velocity' and 'Pressure'
+2. Applies 'Advection' (carrying properties with the flow)
+3. Calculates 'Divergence' to ensure the fluid is incompressible
+4. Renders the resulting ripples and whirlpools as an ASCII flow field.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

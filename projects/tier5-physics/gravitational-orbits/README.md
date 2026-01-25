@@ -15,13 +15,16 @@
 
 **N-Body Problem**
 
-[TODO: Add detailed mathematical explanation]
+The N-Body Problem. Predicts the individual motions of a group of celestial objects interacting with each other through gravitational pull.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Places three masses with random initial velocities in the repo's space
+2. Calculates the gravitational pull between every pair of masses
+3. Updates the velocity and position of each 'Planet'
+4. Logs the chaotic trajectories as they drift into complex orbital patterns.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

@@ -15,13 +15,16 @@
 
 **Turing Patterns**
 
-[TODO: Add detailed mathematical explanation]
+Gray-Scott Reaction-Diffusion Model. A mathematical model of how two chemical substances react and spread, explaining how nature creates patterns like zebra stripes or leopard spots.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Simulates a 2D grid of two chemicals (U and V)
+2. Applies 'Reaction' (V consumes U) and 'Diffusion' (chemicals spread to neighbors)
+3. Renders the resulting concentrations as an ASCII pattern in the logs
+4. Evolves high-concentration 'spots' over time.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

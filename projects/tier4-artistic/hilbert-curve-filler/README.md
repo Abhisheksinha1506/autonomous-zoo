@@ -15,13 +15,16 @@
 
 **Space-Filling Curves**
 
-[TODO: Add detailed mathematical explanation]
+Space-Filling Curves. A continuous curve that passes through every point of a square exactly once, demonstrating that a 1D line can perfectly fill a 2D space.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Calculates a Hilbert path of a specific 'Order'
+2. Moves the repo's 'Focus' point one step along the fractal trail
+3. Tracks the current (x, y) coordinates on a virtual 16x16 grid
+4. Ensures every quadrant is visited before the path resets to the beginning.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

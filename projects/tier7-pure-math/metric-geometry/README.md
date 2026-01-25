@@ -15,13 +15,16 @@
 
 **Geometry**
 
-[TODO: Add detailed mathematical explanation]
+Non-Euclidean Distance Metrics. Compares different 'Rules of Length' like the Taxicab metric (Manhattan distance) versus the standard Euclidean metric (Straight-line).
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Places two points in a coordinate grid
+2. Moves one point randomly each day
+3. Calculates the distance using two different 'Digital Yardsticks'
+4. Shows how the definition of 'far' changes depending on the geometry of the space.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

@@ -15,13 +15,16 @@
 
 **Clonal Selection**
 
-[TODO: Add detailed mathematical explanation]
+Artificial Immune Systems (AIS). Computational models inspired by the biological immune system's ability to distinguish 'self' from 'non-self' and defend against pathogens.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Learns the 'DNA' (hash signatures) of all early project files
+2. Generates 'Antibodies' that represent normal system behavior
+3. Performs 'Negative Selection' to find any files that don't match the signature
+4. Reports or 'Eliminates' foreign files to preserve the repo's integrity.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

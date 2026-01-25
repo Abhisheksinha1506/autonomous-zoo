@@ -15,13 +15,16 @@
 
 **Markov Walks**
 
-[TODO: Add detailed mathematical explanation]
+Markov Chains & Random Walks. A mathematical process where the next step depends only on the current state, often used to find 'Central' nodes in a network.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Deploys a 'Digital Wanderer' to move between repository folders at random
+2. Tracks a 'Visit Count' for every node in the system
+3. Periodically creates 'Hubs' by linking the most visited nodes together
+4. Reorganizes the repo's topology based on where the wanderer goes most often.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

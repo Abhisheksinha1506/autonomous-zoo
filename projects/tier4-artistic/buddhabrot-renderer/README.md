@@ -15,13 +15,16 @@
 
 **Orbit Density**
 
-[TODO: Add detailed mathematical explanation]
+Chaos Theory & Fractal Geometry. A special rendering of the Mandelbrot set that tracks the trajectories of points which escape the fractal boundary, creating a density map.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Picks random points in the complex plane
+2. Iterates the function z = z^2 + c
+3. If the point escapes to infinity, its entire path is recorded
+4. Builds a density map over thousands of generations to reveal the 'Buddha' shape.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

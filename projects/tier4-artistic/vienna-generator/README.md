@@ -15,13 +15,16 @@
 
 **Voice Leading**
 
-[TODO: Add detailed mathematical explanation]
+Music Theory & Voice Leading. Implements classical rules for chord progression and harmony, ensuring mathematical balance in musical intervals.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Selects a musical scale (e.g., C Major)
+2. Generates a 'Triad' (three-note chord) based on the current position
+3. Applies voice-leading rules to pick the next chord smoothly
+4. Records the composition bar-by-bar to build a multi-generation symphony.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

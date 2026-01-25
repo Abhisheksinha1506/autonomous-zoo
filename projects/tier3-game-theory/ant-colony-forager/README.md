@@ -15,13 +15,16 @@
 
 **Swarm Intelligence**
 
-[TODO: Add detailed mathematical explanation]
+Ant Colony Optimization (ACO). A probabilistic technique for solving computational problems which is inspired by the behavior of ants seeking paths from their colony to food.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Deploys digital 'Ants' to wander through the repo's nodes
+2. Ants deposit 'Pheromones' when they find a valid path
+3. Pheromones evaporate over time to prevent stagnation
+4. The colony eventually converges on the shortest, most efficient path through the data.
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State

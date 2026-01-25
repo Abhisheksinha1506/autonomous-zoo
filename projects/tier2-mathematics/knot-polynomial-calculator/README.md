@@ -15,13 +15,16 @@
 
 **Topology (Jones Poly)**
 
-[TODO: Add detailed mathematical explanation]
+Knot Theory and the Jones Polynomial. A way to distinguish different mathematical knots by calculating an algebraic polynomial that remains unchanged no matter how the knot is twisted.
 
 ## 🎯 What This Does
 
 Every day, the repository:
-1. [TODO: Describe evolution steps]
-2. [TODO: Describe state changes]
+1. 1. Generates a random 'Knot Diagram' (a sequence of crossings)
+2. Performs R-moves (Reidemeister moves) to simplify the tangle
+3. Calculates the bracket polynomial for the current configuration
+4. Verifies if the knot belongs to a known family (like the trefoil or figure-eight).
+2. Every generation, the project updates its `state.json` file with the latest calculation, preserving the chain of life across GitHub Action cycles.
 3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State
