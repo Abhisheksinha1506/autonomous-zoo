@@ -1,1 +1,9 @@
-{"generation": 0}\n
+{
+  "generation": 1,
+  "current_n": 82,
+  "path": [
+    27
+  ],
+  "max_reached": 82,
+  "explored": []
+}

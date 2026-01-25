@@ -1,76 +1,64 @@
 #!/usr/bin/env python3
 """
 P-adic Number Line
-Organizes files into an ultrametric tree where triangles are always isosceles
+Organizes files into an "ultrametric" tree (p-adic convergence).
 """
 
 import json
-import hashlib
+import os
 from datetime import datetime
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
+P = 2  # The prime base
 
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
+    defaults = {"generation": 0, "last_val": 0}
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+def get_p_adic_path(n, p):
+    """Convert n to its p-adic directory path."""
+    parts = []
+    temp = n
+    for _ in range(5): # Limit depth to 5
+        parts.append(str(temp % p))
+        temp //= p
+    return "/".join(parts)
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Metric Geometry algorithm here
-    """
     state["generation"] += 1
     
-    # TODO: Add your mathematical transformation here
+    # Generate next number in sequence
+    n = state["last_val"] + state["generation"]
+    state["last_val"] = n
     
+    path = get_p_adic_path(n, P)
+    full_path = Path("tree") / path
+    full_path.mkdir(parents=True, exist_ok=True)
+    
+    with open(full_path / f"val_{n}.txt", "w") as f:
+        f.write(f"P-adic value for n={n}, base p={P}\n")
+        f.write(f"This leaf is 'close' to others in this branch under the p-adic metric.")
+        
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
-
 def main():
-    """Main evolution loop"""
-    print(f"🧬 P-adic Number Line - Evolution Step")
-    print("=" * 50)
-    
+    print(f"🧬 P-adic Number Line (p={P}) - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("tree_viz.md", "a") as f:
+        if state["generation"] == 1: f.write("# P-adic Tree Visualization\n\n")
+        f.write(f"- Gen {state['generation']}: Added n={state['last_val']} at path `tree/{get_p_adic_path(state['last_val'], P)}`\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Tree deepened.")
 
 if __name__ == "__main__":
     main()

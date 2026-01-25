@@ -1,76 +1,92 @@
 #!/usr/bin/env python3
 """
 Ant Colony Forager
-Agents leave pheromone trails (file edits) to find optimal directory paths
+Agents leave "pheromone trails" to find optimal directory paths.
 """
 
 import json
-import hashlib
-from datetime import datetime
+import random
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
+GRID_SIZE = 10
 
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    defaults = {
+        "generation": 0,
+        "pheromones": [[0.1 for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)],
+        "ants": [{"x": 0, "y": 0} for _ in range(5)],
+        "food": {"x": GRID_SIZE-1, "y": GRID_SIZE-1}
+    }
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Swarm Intelligence algorithm here
-    """
     state["generation"] += 1
+    grid = state["pheromones"]
+    ants = state["ants"]
+    food = state["food"]
     
-    # TODO: Add your mathematical transformation here
-    
+    # 1. Move ants
+    for ant in ants:
+        # Move biased by pheromones
+        choices = []
+        for dx, dy in [(0,1), (1,0), (0,-1), (-1,0)]:
+            nx, ny = (ant["x"] + dx) % GRID_SIZE, (ant["y"] + dy) % GRID_SIZE
+            choices.append(((nx, ny), grid[nx][ny]))
+        
+        # Simple weighted choice
+        total = sum(c[1] for c in choices)
+        r = random.uniform(0, total)
+        curr = 0
+        for pos, weight in choices:
+            curr += weight
+            if r <= curr:
+                ant["x"], ant["y"] = pos
+                break
+        
+        # 2. Deposit pheromone if near food
+        dist = abs(ant["x"] - food["x"]) + abs(ant["y"] - food["y"])
+        if dist < 2:
+            grid[ant["x"]][ant["y"]] += 1.0
+            
+    # 3. Evaporate pheromones
+    for x in range(GRID_SIZE):
+        for y in range(GRID_SIZE):
+            grid[x][y] *= 0.9
+            grid[x][y] = max(0.1, grid[x][y])
+            
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
+def render_grid(state):
+    rows = []
+    grid = state["pheromones"]
+    for x in range(GRID_SIZE):
+        row = ""
+        for y in range(GRID_SIZE):
+            v = grid[x][y]
+            if v > 2.0: row += "█"
+            elif v > 0.5: row += "▒"
+            else: row += "░"
+        rows.append(row)
+    return "\n".join(rows)
 
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Ant Colony Forager - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Ant Colony Forager - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("paths.md", "a") as f:
+        if state["generation"] == 1: f.write("# Pheromone Trail Map\n\n")
+        f.write(f"## Generation {state['generation']}\n```\n{render_grid(state)}\n```\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Trails updated.")
 
 if __name__ == "__main__":
     main()

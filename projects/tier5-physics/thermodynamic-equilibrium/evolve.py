@@ -1,76 +1,58 @@
 #!/usr/bin/env python3
 """
 Thermodynamic Equilibrium
-Evolves toward heat death where all file interactions are uniform
+Evolves toward "heat death" where all file interactions are uniform (Entropy maxing).
 """
 
 import json
-import hashlib
-from datetime import datetime
+import random
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
-
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    defaults = {
+        "generation": 0,
+        "energy_levels": [random.randint(0, 100) for _ in range(20)],
+        "entropy": 0
+    }
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Entropy / 2nd Law algorithm here
-    """
     state["generation"] += 1
+    levels = state["energy_levels"]
     
-    # TODO: Add your mathematical transformation here
+    # 2nd Law simulation: Energy redistribution (Exchange)
+    # Pick two random cells and average them partially
+    for _ in range(10):
+        i, j = random.sample(range(len(levels)), 2)
+        diff = (levels[i] - levels[j]) * 0.1
+        levels[i] -= diff
+        levels[j] += diff
+        
+    # Calculate simple variance as proxy for "order"
+    avg = sum(levels) / len(levels)
+    variance = sum((x - avg)**2 for x in levels) / len(levels)
+    state["entropy"] = round(100 - variance, 2)
     
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
-
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Thermodynamic Equilibrium - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Thermodynamic Equilibrium - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("entropy_log.md", "a") as f:
+        if state["generation"] == 1: f.write("# Path to Heat Death\n\n")
+        f.write(f"- Gen {state['generation']}: Entropy: {state['entropy']} | Variance: {100-state['entropy']:.2f}\n")
+        
+    print(f"✅ Generation {state['generation']} complete. System cooled.")
 
 if __name__ == "__main__":
     main()

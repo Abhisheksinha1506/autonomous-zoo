@@ -1,76 +1,75 @@
 #!/usr/bin/env python3
 """
 Fluid Dynamics Flow
-Simulates laminar/turbulent flow as file creation/deletion waves
+Simulates laminar/turbulent flow as file creation/deletion waves (Navier-Stokes base).
 """
 
 import json
-import hashlib
-from datetime import datetime
+import math
+import random
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
+GRID_SIZE = 15
 
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    defaults = {
+        "generation": 0,
+        "velocity_u": [[0.1 for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)],
+        "velocity_v": [[0.1 for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)],
+        "pressure": [[1.0 for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
+    }
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Navier-Stokes algorithm here
-    """
     state["generation"] += 1
+    u = state["velocity_u"]
+    v = state["velocity_v"]
+    p = state["pressure"]
     
-    # TODO: Add your mathematical transformation here
-    
+    # Simple Advection and Diffusion (Simplified)
+    new_u = [row[:] for row in u]
+    for i in range(1, GRID_SIZE-1):
+        for j in range(1, GRID_SIZE-1):
+            # Divergence check
+            divergence = (u[i+1][j] - u[i-1][j] + v[i][j+1] - v[i][j-1]) / 2.0
+            p[i][j] -= divergence * 0.5 # pressure adjustment
+            
+            # Simple advection
+            new_u[i][j] = u[i][j] - (u[i][j] * divergence) + random.uniform(-0.01, 0.01)
+            
+    state["velocity_u"] = new_u
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
+def render_flow(state):
+    grid = state["velocity_u"]
+    rows = []
+    chars = " ▂▃▄▅▆▇█"
+    for r in grid:
+        line = ""
+        for v in r:
+            idx = int(abs(v) * 10) % len(chars)
+            line += chars[idx]
+        rows.append(line)
+    return "\n".join(rows)
 
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Fluid Dynamics Flow - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Fluid Dynamics Flow - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("flow_log.md", "a") as f:
+        if state["generation"] == 1: f.write("# Navier-Stokes Simulation Log\n\n")
+        f.write(f"## Generation {state['generation']}\n```\n{render_flow(state)}\n```\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Fluid flowed.")
 
 if __name__ == "__main__":
     main()

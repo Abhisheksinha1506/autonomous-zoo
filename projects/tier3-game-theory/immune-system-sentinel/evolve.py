@@ -1,76 +1,62 @@
 #!/usr/bin/env python3
 """
 Immune System Sentinel
-Detects anomalous files and eliminates them; maintains self definition
+Detects "anomalous" files and eliminates them; maintains "self" definition.
 """
 
 import json
 import hashlib
-from datetime import datetime
+import os
+import random
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
-
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    defaults = {
+        "generation": 0,
+        "self_signatures": [],
+        "antibodies": []
+    }
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Clonal Selection algorithm here
-    """
     state["generation"] += 1
     
-    # TODO: Add your mathematical transformation here
-    
+    # 1. Learn current files as 'self' if not present
+    files = list(Path('.').glob('*.py')) + list(Path('.').glob('*.md'))
+    for f in files:
+        sig = hashlib.md5(f.name.encode()).hexdigest()[:8]
+        if sig not in state["self_signatures"]:
+            state["self_signatures"].append(sig)
+            
+    # 2. Simulate detection of a random "virus" (new file)
+    if random.random() < 0.2:
+        v_name = f"virus_{random.randint(100,999)}.tmp"
+        with open(v_name, 'w') as f: f.write("malicious content")
+        state["last_alert"] = f"Detected and eliminated {v_name}"
+        os.remove(v_name)
+    else:
+        state["last_alert"] = "System clear"
+        
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
-
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Immune System Sentinel - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Immune System Sentinel - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("immune_log.md", "a") as f:
+        if state["generation"] == 1: f.write("# Primary Immune Response Log\n\n")
+        f.write(f"- Gen {state['generation']}: {state['last_alert']} | Self Sigs: {len(state['self_signatures'])}\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Sentinel active.")
 
 if __name__ == "__main__":
     main()

@@ -1,76 +1,75 @@
 #!/usr/bin/env python3
 """
 Gravitational Orbits
-Files orbit each other; 3-body chaotic orbits emerge
+Files orbit each other; 3-body chaotic orbits emerge (N-Body Problem).
 """
 
 import json
-import hashlib
-from datetime import datetime
+import math
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
+G = 0.1
+DT = 0.5
 
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    # 3 bodies
+    defaults = {
+        "generation": 0,
+        "bodies": [
+            {"m": 10.0, "x": 1.0, "y": 0.0, "vx": 0.0, "vy": 0.1},
+            {"m": 1.0, "x": -1.0, "y": 0.0, "vx": 0.0, "vy": -0.1},
+            {"m": 0.5, "x": 0.0, "y": 1.0, "vx": 0.1, "vy": 0.0}
+        ],
+        "history": []
+    }
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement N-Body Problem algorithm here
-    """
     state["generation"] += 1
+    bodies = state["bodies"]
     
-    # TODO: Add your mathematical transformation here
-    
+    # Calculate forces
+    for i in range(len(bodies)):
+        ax, ay = 0, 0
+        for j in range(len(bodies)):
+            if i == j: continue
+            dx = bodies[j]["x"] - bodies[i]["x"]
+            dy = bodies[j]["y"] - bodies[i]["y"]
+            r2 = dx*dx + dy*dy + 0.1 # softening
+            r = math.sqrt(r2)
+            f = G * bodies[i]["m"] * bodies[j]["m"] / r2
+            ax += f * dx / r / bodies[i]["m"]
+            ay += f * dy / r / bodies[i]["m"]
+            
+        # Update velocity
+        bodies[i]["vx"] += ax * DT
+        bodies[i]["vy"] += ay * DT
+        
+    # Update position
+    for b in bodies:
+        b["x"] += b["vx"] * DT
+        b["y"] += b["vy"] * DT
+        
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
-
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Gravitational Orbits - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Gravitational Orbits - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("orbit_log.md", "a") as f:
+        if state["generation"] == 1: f.write("# N-Body Orbital History\n\n")
+        f.write(f"- Gen {state['generation']}: B1({state['bodies'][0]['x']:.2f},{state['bodies'][0]['y']:.2f})\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Bodies glided.")
 
 if __name__ == "__main__":
     main()

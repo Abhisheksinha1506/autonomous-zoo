@@ -1,76 +1,61 @@
 #!/usr/bin/env python3
 """
 Resource Auction
-Files bid for disk space; repo discovers Pareto-efficient allocation
+Files bid for disk space; repo discovers Pareto-efficient allocation.
 """
 
 import json
-import hashlib
-from datetime import datetime
+import random
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
+NUM_SLOTS = 5
 
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    defaults = {
+        "generation": 0,
+        "participants": [{"id": i, "budget": 100, "bid": 0} for i in range(10)],
+        "winners": []
+    }
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Market Equilibrium algorithm here
-    """
     state["generation"] += 1
     
-    # TODO: Add your mathematical transformation here
+    # 1. Participants place random bids
+    for p in state["participants"]:
+        p["bid"] = random.randint(1, min(p["budget"], 50))
+        
+    # 2. Vickrey Auction (Simplified: Top N win)
+    sorted_p = sorted(state["participants"], key=lambda x: x["bid"], reverse=True)
+    winners = sorted_p[:NUM_SLOTS]
     
+    # 3. Process outcomes
+    state["winners"] = [w["id"] for w in winners]
+    for p in state["participants"]:
+        if p["id"] in state["winners"]:
+            p["budget"] -= p["bid"]
+        p["budget"] += 10 # Universal basic income for next round
+        
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
-
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Resource Auction - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Resource Auction - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("auction_log.md", "a") as f:
+        if state["generation"] == 1: f.write("# Market Equilibrium Log\n\n")
+        f.write(f"- Gen {state['generation']}: Winners IDs {state['winners']} | Avg Budget: {sum(p['budget'] for p in state['participants'])/len(state['participants']):.1f}\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Auction settled.")
 
 if __name__ == "__main__":
     main()

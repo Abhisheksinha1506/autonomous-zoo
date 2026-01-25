@@ -1,76 +1,64 @@
 #!/usr/bin/env python3
 """
 Vienna Generator
-Self-harmonizes musical files according to classical voice-leading rules
+Self-harmonizes musical files according to classical voice-leading rules.
 """
 
 import json
-import hashlib
-from datetime import datetime
+import random
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
+SCALES = {
+    "C_Major": [0, 2, 4, 5, 7, 9, 11],
+    "G_Major": [7, 9, 11, 0, 2, 4, 6]
+}
 
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    defaults = {
+        "generation": 0,
+        "composition": [],
+        "scale": "C_Major"
+    }
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Voice Leading algorithm here
-    """
     state["generation"] += 1
+    scale = SCALES[state["scale"]]
     
-    # TODO: Add your mathematical transformation here
+    # Add a new "note" (harmonized chord)
+    root = random.choice(scale)
+    # Simple triad: Root, Third, Fifth
+    third = scale[(scale.index(root) + 2) % len(scale)]
+    fifth = scale[(scale.index(root) + 4) % len(scale)]
     
+    chord = [root, third, fifth]
+    state["composition"].append(chord)
+    
+    # Keep last 16 bars
+    if len(state["composition"]) > 16:
+        state["composition"].pop(0)
+        
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
-
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Vienna Generator - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Vienna Generator - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("composition.md", "a") as f:
+        if state["generation"] == 1: f.write("# Harmonized Composition Log\n\n")
+        current_chord = state["composition"][-1]
+        f.write(f"- Bar {state['generation']}: Chord {current_chord} in {state['scale']}\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Music composed.")
 
 if __name__ == "__main__":
     main()

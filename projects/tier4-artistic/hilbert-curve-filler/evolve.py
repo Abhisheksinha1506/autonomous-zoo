@@ -1,76 +1,66 @@
 #!/usr/bin/env python3
 """
 Hilbert Curve Filler
-Fills repo space perfectly using a single continuous fractal path
+Fills repo space perfectly using a single continuous fractal path.
 """
 
 import json
-import hashlib
-from datetime import datetime
 from pathlib import Path
 
-# Configuration
-STATE_FILE = "state.json"
-HISTORY_FILE = "history.md"
+def hilbert(d, n):
+    """Convert distance along curve to (x, y) coordinates."""
+    t = d
+    x, y = 0, 0
+    s = 1
+    while s < n:
+        rx = 1 & (t // 2)
+        ry = 1 & (t ^ rx)
+        # Rot
+        if ry == 0:
+            if rx == 1:
+                x = s - 1 - x
+                y = s - 1 - y
+            x, y = y, x
+        x += s * rx
+        y += s * ry
+        t //= 4
+        s *= 2
+    return x, y
 
 def load_state():
-    """Load current state from JSON"""
-    if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {"generation": 0}
-
-def save_state(state):
-    """Persist state to JSON"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, indent=2)
-
-def get_date_seed():
-    """Generate deterministic seed from current date"""
-    date_str = str(datetime.now().date())
-    return int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
+    defaults = {"generation": 0, "order": 4} # 16x16 grid
+    if Path("state.json").exists():
+        with open("state.json") as f:
+            try:
+                state = json.load(f)
+                defaults.update(state)
+            except: pass
+    return defaults
 
 def evolve_step(state):
-    """
-    Core evolution logic.
-    
-    TODO: Implement Space-Filling Curves algorithm here
-    """
     state["generation"] += 1
-    
-    # TODO: Add your mathematical transformation here
-    
+    # Move one step along the fractal path
+    state["dist"] = state.get("dist", 0) + 1
+    n = 2**state["order"]
+    if state["dist"] >= n*n:
+        state["dist"] = 0 # Loop or reset
+        
+    x, y = hilbert(state["dist"], n)
+    state["pos"] = [x, y]
     return state
 
-def log_evolution(state):
-    """Append to history.md"""
-    timestamp = datetime.now().isoformat()
-    
-    if not Path(HISTORY_FILE).exists():
-        with open(HISTORY_FILE, 'w') as f:
-            f.write("# Evolution History\n\n")
-    
-    with open(HISTORY_FILE, 'a') as f:
-        f.write(f"\n## Generation {state['generation']} — {timestamp[:10]}\n\n")
-        f.write(f"- **Status**: [TODO: Add status description]\n")
-
 def main():
-    """Main evolution loop"""
-    print(f"🧬 Hilbert Curve Filler - Evolution Step")
-    print("=" * 50)
-    
+    print("🧬 Hilbert Curve Filler - Evolution Step")
     state = load_state()
-    
-    # Safety check
-    if state["generation"] >= 1000:
-        print("⚠️  Max generations reached.")
-        return
-    
     state = evolve_step(state)
-    save_state(state)
-    log_evolution(state)
-    
-    print(f"✅ Generation {state['generation']} complete\n")
+    with open("state.json", "w") as f:
+        json.dump(state, f)
+        
+    with open("path_log.md", "a") as f:
+        if state["generation"] == 1: f.write("# Fractal Traversal Log\n\n")
+        f.write(f"- Gen {state['generation']}: Moved to {state['pos']} (Distance: {state['dist']})\n")
+        
+    print(f"✅ Generation {state['generation']} complete. Hilbert stepped.")
 
 if __name__ == "__main__":
     main()
