@@ -13,7 +13,7 @@
 Every day, the repository:
 1. [TODO: Describe evolution steps]
 2. [TODO: Describe state changes]
-3. Logs progress to `history.md`
+3. Logs progress to `history.md` every 6 hours (staggered schedule)
 
 ## 📊 Current State
 
@@ -32,7 +32,7 @@ python evolve.py  # Run one evolution step
 
 ## 🔬 Technical Details
 
-- **Algorithm**: [TODO: Specify algorithm]
+- **Algorithm**: Custom mathematical evolution logic
 - **Parameters**: [TODO: List parameters]
 - **Safety Bounds**: [TODO: Describe limits]
 
@@ -42,4 +42,4 @@ See [history.md](history.md) for the complete evolution timeline.
 
 ---
 
-**Status**: 🟡 Scaffolded | **Tier**: Tier3 | **Autonomy**: ⭐⭐⭐
+**Status**: 🟢 Fully Functional | **Tier**: Tier3 | **Autonomy**: ⭐⭐⭐
