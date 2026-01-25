@@ -11,6 +11,7 @@ jobs:
     
     permissions:
       contents: write
+      issues: write
     
     steps:
       - name: Checkout repository
@@ -40,3 +41,12 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PROJ_NAME=$(basename $(pwd))
+          gh issue create --title "🆘 Project Failure: $PROJ_NAME" \
+                          --body "The autonomous evolution workflow for **$PROJ_NAME** failed during the latest cycle. \n\nPlease check the Action logs for details. This is an automated health report from the Zoo Keeper."
