@@ -7,3 +7,4 @@ Gen 6 hash: b79ee5c2
 Gen 7 hash: b79ee5c2
 Gen 8 hash: b79ee5c2
 Gen 9 hash: b79ee5c2
+Gen 10 hash: b79ee5c2
