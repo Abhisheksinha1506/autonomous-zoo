@@ -1,11 +1,11 @@
+concurrency: autonomous-zoo-evolution
+
 name: Autonomous Zoo Evolution
 
 on:
   schedule:
     - cron: '30 20 * * *'  # Daily at 20:30 UTC (02:00 IST)
   workflow_dispatch:
-
-concurrency: autonomous-zoo-evolution
 
 jobs:
   evolve:
@@ -44,8 +44,6 @@ jobs:
             )
           done
           
-      - name: Commit Changes
-
       - name: Fetch and Rebase
         run: |
           git config --global user.name 'github-actions[bot]'
