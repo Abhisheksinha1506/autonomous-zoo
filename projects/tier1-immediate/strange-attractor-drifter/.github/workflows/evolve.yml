@@ -2,7 +2,7 @@ name: Daily Evolution
 
 on:
   schedule:
-    - cron: '3 */6 * * *'  # Every 6 hours (staggered at minute 3)
+    - cron: '33 */6 * * *'  # Every 6 hours (staggered at minute 3)
   workflow_dispatch:  # Allow manual triggers
 
 jobs:
