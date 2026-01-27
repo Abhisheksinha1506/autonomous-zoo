@@ -122,6 +122,24 @@ def log_history(state):
             f.write("### Trajectory Visualization\n")
             f.write("```\n" + render_path_viz(state) + "\n```\n")
 
+
+def update_readme(summary):
+    readme_path = Path("README.md")
+    if not readme_path.exists(): return
+    with open(readme_path, 'r') as f:
+        content = f.read()
+    
+    start_marker = "<!-- LATEST_STATUS_START -->"
+    end_marker = "<!-- LATEST_STATUS_END -->"
+    
+    if start_marker in content and end_marker in content:
+        parts = content.split(start_marker)
+        prefix = parts[0] + start_marker
+        suffix = end_marker + parts[1].split(end_marker)[1]
+        new_content = f"{prefix}\n*{summary}*\n{suffix}"
+        with open(readme_path, 'w') as f:
+            f.write(new_content)
+
 def main():
     env = get_social_environment()
     print("🧬 Collatz Conjecture Explorer - Evolution Step")

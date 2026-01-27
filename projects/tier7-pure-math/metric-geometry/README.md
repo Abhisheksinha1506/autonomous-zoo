@@ -5,6 +5,12 @@
 
 
 
+### 📢 Latest Status
+<!-- LATEST_STATUS_START -->
+*Awaiting first evolution...*
+<!-- LATEST_STATUS_END -->
+
+
 ## 📖 The Analogy
 
 > If you lived in a city made of blocks, you'd measure distance differently than if you could fly. This project compares these two types of travel to see how 'far' its files really are from each other.
