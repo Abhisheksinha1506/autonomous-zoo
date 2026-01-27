@@ -17,6 +17,8 @@ jobs:
       pull-requests: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Run Sensor
         env:
           GH_TOKEN: ${{ github.token }}
