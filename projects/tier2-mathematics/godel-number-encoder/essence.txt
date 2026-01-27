@@ -9,3 +9,4 @@ Gen 8 hash: b79ee5c2
 Gen 9 hash: b79ee5c2
 Gen 10 hash: b79ee5c2
 Gen 11 hash: b79ee5c2
+Gen 12 hash: b79ee5c2
