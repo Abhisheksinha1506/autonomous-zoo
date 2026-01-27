@@ -1,9 +1,13 @@
 {
-  "generation": 1,
-  "current_n": 82,
+  "generation": 5,
+  "current_n": 31,
   "path": [
-    27
+    27,
+    82,
+    41,
+    124,
+    62
   ],
-  "max_reached": 82,
+  "max_reached": 124,
   "explored": []
 }

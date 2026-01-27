@@ -39,12 +39,14 @@ HISTORY_FILE = "history.md"
 BEST_SIZE_FILE = "best_size.txt"
 
 def load_state():
+    state = {"generation": 0, "best_size": float('inf')}
     if Path(STATE_FILE).exists():
-        with open(STATE_FILE) as f:
-            try:
-                return json.load(f)
-            except: pass
-    return {"generation": 0, "best_size": float('inf')}
+        try:
+            with open(STATE_FILE) as f:
+                loaded = json.load(f)
+                state.update(loaded)
+        except: pass
+    return state
 
 def save_state(state):
     with open(STATE_FILE, 'w') as f:
@@ -117,6 +119,8 @@ def mutate(code):
 
 
 def update_readme(summary):
+    from pathlib import Path
+    from datetime import datetime
     readme_path = Path("README.md")
     if not readme_path.exists(): return
     try:
@@ -129,9 +133,9 @@ def update_readme(summary):
         prefix = parts[0] + start
         suffix = end + suffix_parts[1]
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
-        new_inner = f"
+        new_inner = f"""
 *{summary} ({timestamp})*
-"
+"""
         readme_path.write_text(prefix + new_inner + suffix)
     except Exception as e: print(f"⚠️ README Update Failed: {e}")
 
@@ -193,6 +197,7 @@ def main():
             f.write(f"- **Improvement**: {current_size - mutated_size} bytes\n")
 
     print(f"✅ Generation {state['generation']} complete\n")
+    update_readme(summary)
 
 if __name__ == "__main__":
     main()
