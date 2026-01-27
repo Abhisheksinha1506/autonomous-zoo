@@ -20,3 +20,7 @@
 > **What happened?** The project's mathematical 'lens' sharpened today. By using continued fractions to calculate an approximation of Pi (104348/33215), it reduced its calculation error to 3.316280583476e-10, approaching infinite precision. *The atmosphere feels calm today with a social pressure of 0.00.*
 
 - PI ≈ 104348/33215 | Error: 3.316280583476e-10
+## Generation 6
+> **What happened?** The project's mathematical 'lens' sharpened today. By using continued fractions to calculate an approximation of Pi (208341/66317), it reduced its calculation error to 1.223563472763e-10, approaching infinite precision. *The atmosphere feels calm today with a social pressure of 0.00.*
+
+- PI ≈ 208341/66317 | Error: 1.223563472763e-10
