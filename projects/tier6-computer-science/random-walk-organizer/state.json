@@ -1,1 +1,1 @@
-{"generation": 13, "current_node": "D", "visits": {"A": 32, "B": 26, "C": 33, "D": 16, "E": 23}, "links": {"A": ["B", "C", "A", "D", "E"], "B": ["A", "D", "E"], "C": ["A", "E", "C"], "D": ["B"], "E": ["C"]}, "last_link": "Created hub link: C -> C"}
+{"generation": 14, "current_node": "A", "visits": {"A": 35, "B": 28, "C": 35, "D": 18, "E": 24}, "links": {"A": ["B", "C", "A", "D", "E"], "B": ["A", "D", "E"], "C": ["A", "E", "C"], "D": ["B"], "E": ["C"]}, "last_link": "Static topology"}
