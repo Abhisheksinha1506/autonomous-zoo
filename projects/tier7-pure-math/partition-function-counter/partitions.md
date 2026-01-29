@@ -56,3 +56,7 @@
 > **What happened?** The repository explored the theory of additive partitions today, counting the ways to build the number 15. The resulting count p(15) = 176 adds another data point to the sequence, showing how quickly complexity grows from simple building blocks. *The atmosphere feels calm today with a social pressure of 0.20.*
 
 - Count: p(15) = 176
+## Generation 15
+> **What happened?** The repository explored the theory of additive partitions today, counting the ways to build the number 16. The resulting count p(16) = 231 adds another data point to the sequence, showing how quickly complexity grows from simple building blocks. *The atmosphere feels calm today with a social pressure of 0.20.*
+
+- Count: p(16) = 231
