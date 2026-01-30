@@ -300,3 +300,23 @@
 ▂▂   ▂ ▂▂▂▂▂ ▂▂
 ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
 ```
+## Generation 16
+> **What happened?** The digital fluids rippled through the repository today. Using simplified Navier-Stokes logic, the project simulated laminar flow and subtle turbulence, moving 'information mass' across the digital grid. *The atmosphere feels calm today with a social pressure of 0.20.*
+
+```
+▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+▂ ▂   ▂  ▂    ▂
+▂ ▂▂  ▂▂    ▂ ▂
+▂      ▂▂  ▂  ▂
+▂▂▂▂  ▂   ▂ ▂ ▂
+▂▂    ▂▂ ▂ ▂▂ ▂
+▂▂▂▂   ▂      ▂
+▂  ▂  ▂▂▂ ▂ ▂ ▂
+▂ ▂  ▂ ▂  ▂  ▂▂
+▂ ▂▂▂▂ ▂     ▂▂
+▂ ▂▂▂▂ ▂  ▂▂▂ ▂
+▂     ▂ ▂ ▂   ▂
+▂▂▂▂▂ ▂ ▂▂ ▂ ▂▂
+▂▂   ▂ ▂▂▂▂▂ ▂▂
+▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+```
