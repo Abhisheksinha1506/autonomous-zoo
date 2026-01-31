@@ -1,6 +1,6 @@
 {
-  "generation": 17,
-  "current_n": 364,
+  "generation": 18,
+  "current_n": 182,
   "path": [
     27,
     82,
@@ -18,7 +18,8 @@
     161,
     484,
     242,
-    121
+    121,
+    364
   ],
   "max_reached": 484,
   "explored": []
