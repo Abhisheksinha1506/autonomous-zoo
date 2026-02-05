@@ -80,3 +80,7 @@
 > **What happened?** The repository explored the theory of additive partitions today, counting the ways to build the number 21. The resulting count p(21) = 792 adds another data point to the sequence, showing how quickly complexity grows from simple building blocks. *The atmosphere feels calm today with a social pressure of 0.20.*
 
 - Count: p(21) = 792
+## Generation 21
+> **What happened?** The repository explored the theory of additive partitions today, counting the ways to build the number 22. The resulting count p(22) = 1002 adds another data point to the sequence, showing how quickly complexity grows from simple building blocks. *The atmosphere feels calm today with a social pressure of 0.20.*
+
+- Count: p(22) = 1002
