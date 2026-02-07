@@ -1,3 +1,0 @@
-Timestamp: 2026-02-06T20:58:03.184297
-Coordinates: X=8.1760, Y=-6.0754, Z=38.8517
-Status: Drifting along the Lorenz Attractor.
