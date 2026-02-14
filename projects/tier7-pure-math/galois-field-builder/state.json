@@ -1,1 +1,1 @@
-{"generation": 29, "elements": [0, 1, 2, 3, 4, 5, 6], "current_op": "(x + 1) mod 7", "result_field": [1, 2, 3, 4, 5, 6, 0]}
+{"generation": 30, "elements": [0, 1, 2, 3, 4, 5, 6], "current_op": "(x + 2) mod 7", "result_field": [2, 3, 4, 5, 6, 0, 1]}

@@ -145,3 +145,8 @@
 
 - Grid State: `[░░░░░░░░░░█░░░░░░░░░]`
 
+## Generation 30 — 15.0% Coop
+> **What happened?** A round of game theory interactions was played across the repo. Betrayal is rampant! The system is drifting toward a cynical Nash equilibrium of mutual defection. *The atmosphere feels calm today with a social pressure of 0.20.*
+
+- Grid State: `[█░░░░░░░░░██░░░░░░░░]`
+
