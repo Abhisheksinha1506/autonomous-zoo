@@ -1,1 +1,1 @@
-{"generation": 33, "current_node": "E", "visits": {"A": 71, "B": 71, "C": 82, "D": 53, "E": 53}, "links": {"A": ["B", "C", "A", "D", "E"], "B": ["A", "D", "E"], "C": ["A", "E", "C", "D", "B"], "D": ["B"], "E": ["C"]}, "last_link": "Static topology"}
+{"generation": 34, "current_node": "C", "visits": {"A": 72, "B": 72, "C": 86, "D": 53, "E": 57}, "links": {"A": ["B", "C", "A", "D", "E"], "B": ["A", "D", "E"], "C": ["A", "E", "C", "D", "B"], "D": ["B"], "E": ["C"]}, "last_link": "Static topology"}
