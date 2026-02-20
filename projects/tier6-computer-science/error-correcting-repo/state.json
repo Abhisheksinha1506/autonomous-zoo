@@ -1,1 +1,1 @@
-{"generation": 35, "files": {"file1.txt": {"content": "HIllo World", "checksum": 0}}, "action": "No errors detected"}
+{"generation": 36, "files": {"file1.txt": {"content": "HIllo World", "checksum": 0}}, "action": "CRITICAL: Corruption detected at index 6 -> Self-healed from redundancy."}
